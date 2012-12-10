@@ -877,7 +877,7 @@
 				}
 				// 这个地方就是没有break。当是纯文字时就直接按number类型来处理
 			default :
-				if (!~(item = method.getOptions(item)) { return this; }
+				if (!~(item = method.getOptions(item))) { return this; }
 				
 				listChildren = item.app4list.children();
 				fullChildren = item.app4full.children();
@@ -899,7 +899,7 @@
 			&& listChildren.last().html(app.label)[typeof app.label === 'undefined' ? 'hide' : 'show']()
 			&& fullChildren.last().html(app.label)[typeof app.label === 'undefined' ? 'hide' : 'show']();
 		
-		Neter.apply(item, app, {}, updateSubApps ? [], ['subApps']);
+		Neter.apply(item, app, {}, updateSubApps ? [] : ['subApps']);
 		
 		return this;
 	},
