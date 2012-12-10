@@ -1,0 +1,291 @@
+@charset "utf-8";
+/* 主页面 */
+
+.header {
+	position: relative;
+	height: 90px;
+	overflow: hidden;
+}
+#logo {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	margin: 0;
+	padding: 0;
+	
+}
+#searchBar {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+}
+#keyword {
+	position: absolute;
+	padding-right: 28px;
+	z-index: 1px;
+}
+.keyword-container {
+	position: relative;
+}
+#keywordOptions {
+	position: absolute;
+	right: 8px;
+	top: 6px;
+	width: 16px;
+	height: 16px;
+	background: url(../resources/images/arrow_down.png) no-repeat 0 0;
+	z-index: 10;
+}
+#testContainer {
+	position: absolute;
+	top: 15px;
+	left: 50%;
+	margin-left: -50px;
+}
+#boxContent { display: none; }
+#boxContent ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#boxContent ul li {
+	margin: 0;
+	padding: 5px 10px;
+}
+#boxContent label {
+	display: inline-block;
+	font-size: 14px;
+	font-weight: 700;
+	width: 80px;
+}
+#cancel { margin-left: 10px; }
+
+.buttons-bar {
+	text-align: center;
+}
+
+#header ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 20px;
+	left: 200px;
+}
+
+#header ul li {
+	float: left;
+	margin: 0 10px;
+	word-break: break-all;
+	word-wrap: break-word;
+	padding: 2px 5px;
+	cursor: default;
+	border-radius: 3px;
+}
+#header ul li b {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	background: url(../../../resources/images/arrow_down.png) no-repeat 2px 5px;
+}
+#header ul li:hover {
+	color: #FFF;
+	background-color: #039;
+}
+#header ul li.user b { display: none; }
+
+.menu-test {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	margin-left: -100px;
+	display:none;
+}
+
+#navigationContainer {
+	position: absolute;
+	top: 50px;
+	left: 0px;
+	width: 100%;
+}
+#view {
+	position: absolute;
+	top: 100px;
+	left: 0;
+	width : 100%;
+	height: 400px;
+	overflow: hidden;
+}
+
+/* 通讯录 */
+.home {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+.home .navigation {
+	width: 200px;
+	height: 100%;
+	border-right: 1px #BDBDBD solid;
+	border-bottom: 1px #BDBDBD solid;
+	background: #F5F5F5;
+	overflow: hidden;
+}
+#home_panel {
+	position: absolute;
+	left: 200px;
+	top: 0;
+	height: 100%;
+}
+#navTree {
+	position: relative;
+}
+.navigation {
+	position: relative;
+	overflow: hidden;
+}
+.contact-buttons {
+	height: 55px;
+}
+ul.buttons {
+	list-style:none;
+	padding: 0;
+	margin: 0;
+	height: 55px;
+	margin-top: -1px;
+	position: relative;
+}
+ul.buttons li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	background: url(../../../resources/images/blue/bg.png) no-repeat 0 0;
+	cursor: pointer;
+	display: inline-block;
+	margin-top: 15px;
+	margin-left: 12px;
+	height: 34px;
+	line-height: 34px;
+	width: 88px;
+	position: relative;
+}
+ul.buttons li:hover {
+	background-position: 0 -48px;
+}
+ul.buttons li:active {
+	background-position: 0 -96px;
+}
+ul.buttons li.write:hover {
+	background-position: -87px -48px;
+}
+ul.buttons li.write:active {
+	background-position: -87px -96px;
+}
+ul.buttons li.write {
+	background-position: -87px 0;
+	margin-left: -1px;
+	width: 89px;
+}
+.receive .icon, .write .icon {
+	height: 15px;
+	width: 25px;
+	left: 14px;
+	position: absolute;
+	top: 10px;
+	cursor: pointer;
+	background: url(../../../resources/images/blue/bg.png) no-repeat 0 -192px;
+}
+.write .icon {
+	background-position: -64px -192px;
+}
+.receive .name, .write .name {
+	font-size: 14px;
+	font-weight: bold;
+	color: #3C6692;
+	text-shadow: 0 1px 0 #FFF;
+	margin-left: 38px;
+}
+
+.control-button {
+	position: absolute;
+	display: block;
+	right: 1px;
+	top: 1px;
+	width: 13px;
+	height: 12px;
+	background: url(../../../resources/images/prev_disabled.png) no-repeat 0 0;
+	z-index:5;
+}
+
+/* 皮肤设置页面样式 */
+#skinsList {
+	position: relative;
+	overflow: auto;
+}
+.page-skin {
+	position:relative;
+	float: left;
+	height: 152px;
+	width: 157px;
+}
+.page-skin-container {
+	position: absolute;
+	display: block;
+	width: 114px;
+	height: 138px;
+	left: 12px;
+	top: 8px;
+	margin: 2px;
+	color: #555;
+	cursor: pointer;
+	text-decoration: none;
+	z-index: 2;
+}
+.page-skin-content {
+	position: absolute;
+	display: block;
+	height: 90px;
+	width: 90px;
+	left: 12px;
+	top: 12px;
+	background: url('../../../resources/images/skin_all.jpg') no-repeat 0 0;
+}
+.page-skin-title {
+	position: absolute;
+	display: block;
+	left: 0;
+	top: 110px;
+	overflow: hidden;
+	cursor: default;
+	text-align: center;
+	white-space: nowrap;
+	width: 100%;
+	font-size: 12px;
+}
+.page-skin-selected-border {
+	position: absolute;
+	border: 2px solid #3D882D;
+	color: #555;
+	height: 138px;
+	width: 114px;
+	left: 12px;
+	top: 8px;
+	visibility: hidden;
+	z-index: 1;
+}
+.page-skin-selected-icon {
+	background-color: #3D882D;
+	bottom: -2px;
+	color: #FFF;
+	display: block;
+	font-size: 8px;
+	height: 11px;
+	overflow: hidden;
+	padding-left: 2px;
+	position: absolute;
+	right: -2px;
+	text-align: center;
+	width: 9px;
+	font-family: "neter";
+	display: none;
+}

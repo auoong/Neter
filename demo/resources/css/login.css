@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* 登录页面 */
+
+body { font-size: 14px; }
+
+#center {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -220px;
+	height: 440px;
+	width: 100%;
+}
+#container {
+	position: absolute;
+	left: 50%;
+	top: 0;
+	margin-left: -450px;
+	height: 440px;
+	width: 900px;
+	overflow: hidden;
+}
+#login {
+	position: absolute;
+	top: 20px;
+	right: 50px;
+}
+#username, #password { width: 237px; }
+.field-container { margin: 30px 0 0 30px; }
+.reg { margin-left: 45px }

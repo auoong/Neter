@@ -1,0 +1,117 @@
+<section class="home">
+	<div class="navigation">
+		<a href="###" class="control-button"></a>
+		<div class="contact-buttons">
+			<ul class="buttons">
+				<li class="receive">
+					<span class="icon"></span>
+					<span class="name">收信</span>
+				</li>
+				<li class="write">
+					<span class="icon"></span>
+					<span class="name">写信</span>
+				</li>
+			</ul>
+		</div>
+		<div id="navTree">
+		</div>
+	</div>
+	<iframe id="home_panel" name="home_panel" frameborder="0" src="template/blank.html"></iframe>
+</section>
+<script type="text/javascript">
+	(function() {
+		var accordion = new Neter.Accordion({
+			width : 'auto',
+			container : $('#navTree'),
+			items : [{
+				name : '收件箱'
+			}, {
+				name : '红旗邮件'
+			}, {
+				name : '草稿箱'
+			}, {
+				name : ''
+			}, {
+				name : '文件中心',
+				subMenus : [{
+					name : '网盘'
+				}, {
+					name : '附件'
+				}, {
+					name : '云附件'
+				}, {
+					name : '相册'
+				}]
+			}],
+			itemEvent : function(accordion, options) {
+				options.name == '收件箱' && navigation.active(options.name);
+			}
+		})
+		.render()
+		// 自动选择第2个菜单，并且触发菜单事件，如果不想触发传递第二个参数为false
+		.selected(1/*, false */);
+		
+		
+		var nav = $('.navigation'),
+			flag = 1,
+			orig = {
+				width : nav.width(),
+				height : nav.height()
+			};
+		
+		// 给左侧增加显示与隐藏滚动条事件，这个事件只有在出现滚动条时能看出效果。
+		$('#navTree')
+			.mouseenter(function() { $(this).css({'overflow' : 'auto'}); })
+			.mouseleave(function() { $(this).css('overflow', 'hidden'); })
+			// 当滚动了窗口则增加一个阴影。
+			.scroll(function(e) {
+				$('.contact-buttons').css('box-shadow' , $(this).scrollTop() > 0 ? '-2px 2px 6px rgba(0, 0, 0, .1)' : '');
+			});;
+		
+		// 窗口调整大小时进行重新页面布局
+		$(window).resize(function() {
+			var height = $('#view').height($('body').height() - $('#header').height()).height(),
+				nw     = nav.width();
+			
+			$('#home_panel').width($('body').width() - (nw > 15 ? 200 : 0)).height(height).css('left', nw > 15 ? 201 : 0);
+			
+			(nw > 15) && nav.height($('#home_panel').height());
+			
+			$('#navTree').css('height', height - 55);
+			
+			// 当左侧列表宽度大于15时，即为展开状态，这时候需要更新原始左侧的大小。
+			nw > 15 && (orig = {
+				width : nav.width(),
+				height : nav.height()
+			});
+		}).trigger('resize');
+		
+		// 展开与折叠左侧列事件
+		$('.control-button').live('click', function() {
+			var self = $(this);
+			
+			// 互斥执行下面的两组事件
+			!~(flag = flag * -1)
+				// 折叠事件
+				? $('.navigation').animate({ height : 12 }, function() {
+					$(this).animate({ width  : 13 }, function() {
+						  self.css('background', 'url(../resources/images/next_disabled.png) no-repeat 0 0 ');
+						  $(window).trigger('resize');
+						})
+				  })
+				// 展开事件
+				: $('.navigation').animate({ width : orig.width }, function() {
+					  $(this).animate({ height : orig.height });
+					  self.css('background', 'url(../resources/images/prev_disabled.png) no-repeat 0 0 ');
+					  $(window).trigger('resize');
+				  })
+		})
+		// 鼠标悬停时的事件，本来放在css中的，但由于是需要4张图片切换，因此还是用js来控制。
+		.live('mouseenter', function() {
+			$(this).css('background', $(this).css('background-image').replace(/_disabled/g, ''));
+		})
+		.live('mouseleave', function() {
+			$(this).css('background', $(this).css('background-image').replace('.png', '_disabled.png'));
+		});
+	})();
+</script>

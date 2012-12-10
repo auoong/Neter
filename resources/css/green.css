@@ -1,0 +1,72 @@
+@charset "utf-8";
+/* 清新绿皮肤 */
+
+/* 右上角背景图片 */
+body {
+	background: url(../images/green/top_right.jpg) no-repeat right top;
+}
+
+
+/* 导航条容器 */
+.neter-navigation-ul {
+	border-bottom: 1px #CCC solid;
+}
+/* 导航项 */
+.neter-navigation-item, .neter-navigation-item-options-menu-button {
+	background: url(../images/green/bgx.png) repeat-x 0 0;
+	background-position: 0 -112px;
+	background: -moz-linear-gradient(center top, #FEFFFE, #D0ECD3) repeat;
+	border-color: #B9C4CF;
+	border-style: solid;
+	border-width: 1px 1px 0;
+	border-radius: 2px 2px 0 0;
+	font-size: 14px;
+	color: #008810;
+}
+.neter-navigation-item:hover,
+.neter-navigation-item-options-menu-button:hover,
+.neter-navigation-item-hover {
+	background-position: 0 -160px;
+	background: -moz-linear-gradient(center top, #FEFFFF, #D0ECD3) repeat;
+	border-color: #95AC98;
+}
+.neter-navigation-item:active, .neter-navigation-item-options-menu-button:active, .neter-navigation-item-active {
+	background-position: 0 -208px;
+	background: #9BBA9E;
+	border-color: #77907B;
+	color: #6A6A6A;
+}
+.neter-navigation-item-selected {
+	background-position: 0 -272px;
+	background: -moz-linear-gradient(center top, #1F982D, #047D12) repeat 0 0 !important;
+	border-color: #037C11;
+}
+.neter-navigation-item-close-button:hover {
+	border: 1px #95AC98 solid !important;
+	color: #606461;
+}
+/* 选中项的关闭按钮样式 */
+.neter-navigation-item-selected .neter-navigation-item-close-button:hover {
+	background: #9BBA9E;
+	background: -moz-linear-gradient(center top, #8ECE96, #72B37A) repeat 0 0 !important;
+	color: #037C11;
+}
+/* 关闭按钮背景 */
+.neter-navigation-item-close-button {
+	color: #A0D1A6;
+}
+/* 导航分隔线 */
+.neter-navigation-separator {
+	background: url(../images/green/bgx.png) repeat-x 0 -85px;
+}
+
+/* 收信、写信 */
+ul.buttons li {
+	background: url(../images/green/bg.png) no-repeat 0 0;
+}
+.receive .name, .write .name {
+	color: #266E2E;
+}
+.receive .icon, .write .icon {
+	background: url(../images/green/bg.png) no-repeat 0 -192px;
+}
