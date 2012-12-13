@@ -345,11 +345,11 @@
 			timer = setTimeout(fx, 250);
 
 			handler.dock
-			.delegate('.neter-dock-list,.neter-dock-list-h', 'click', function(event) { event.stopPropagation(); })
+			.on('click', '.neter-dock-list,.neter-dock-list-h', function(event) { event.stopPropagation(); })
 			// 设置开始按钮的单击事件
 			// 起初是绑定在.neter-dock-start-button之上，即蹭的黑色区域，发现不好单击
 			// 因此绑定到按钮的容器.neter-dock-start-button-container
-			.delegate('.neter-dock-start-button-container', 'click', function(event) {
+			.on('click', '.neter-dock-start-button-container', function(event) {
 				event.stopPropagation();
 
 				if ($(this).data('status') === 'open') {
@@ -371,7 +371,7 @@
 
 			handler.dockList
 			// 给一级应用程序添加鼠标事件
-			.delegate('.neter-dock-list-item', 'mouseenter', function(event) {
+			.on('mouseenter', '.neter-dock-list-item', function(event) {
 				if (!defaults.group) { return ; }
 				handler.childList.hide();
 				handler.childListArrow.hide();
@@ -418,7 +418,7 @@
 
 			handler.dock
 			// 应用程序单击事件
-			.delegate('.neter-dock-list-item,.neter-dock-full-list-item', 'click', function(event) {
+			.on('click', '.neter-dock-list-item,.neter-dock-full-list-item', function(event) {
 				var itemEvent = defaults.itemEvent;
 
 				if (typeof itemEvent === 'function' && itemEvent.call(this, _this, method.getOptions(this, $(this).data('level') == 2 ? handler.subApps : null), defaults.currentModel, event) !== false) {
@@ -428,7 +428,7 @@
 				}
 			})
 			// 滚动事件
-			.delegate('.neter-dock-list-scroll', 'click', function(event) {
+			.on('click', '.neter-dock-list-scroll', function(event) {
 				if ($(this).data('animate') === 'yes') { return ; }
 				
 				var listView = handler.listView;
@@ -491,7 +491,7 @@
 
 			handler.fullList
 			// 全屏模式的翻页事件
-			.delegate('.up,.down,.page', 'click', function(event) {
+			.on('click', '.up,.down,.page', function(event) {
 				// 获取当前选中的页码，从0开始
 				var el         = $(this),
 					index      = $(this).siblings('.selected').index(),
@@ -527,8 +527,6 @@
 				}, function() {
 					el.removeData('animate');
 				});
-
-				console.log(marginLeft);
 				
 				$(pages.removeClass('selected').get(index)).addClass('selected');
 			});

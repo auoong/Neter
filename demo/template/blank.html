@@ -3,6 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title></title>
+<link rel="stylesheet" type="text/css" href="../../resources/css/neter.css" />
 <style type="text/css">
 	html, body {
 		margin: 0;
@@ -10,15 +11,132 @@
 		height: 100%;
 		background: rgba(204,204,204,.1);
 	}
+	#container {
+		list-style: none;
+	}
+	#container li {
+		margin: 5px;
+	}
 </style>
 <script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../core.js"></script>
+<script type="text/javascript" src="../../box.js"></script>
+<script type="text/javascript" src="../../dropdownmenu.js"></script>
+<script type="text/javascript" src="../../button.js"></script>
+<script type="text/javascript" src="../../combox.js"></script>
 </head>
 
 <body>
+	<ul id="container">
+		<li>普通按钮</li>
+		<li>禁用状态按钮</li>
+		<li>带有前缀的按钮</li>
+		<li>带有下拉菜单按钮</li>
+		<li>带有下拉菜单，且按钮事件与菜单分离</li>
+		<li>普通下拉列表</li>
+		<li>可输入下拉列表</li>
+	</ul>
 <script type="text/javascript">
 	$('body').click(function() {
 		parent.$('body').trigger('click');
 	});
+
+	Neter.path('../../');
+
+	var li = $('#container li');
+
+	~function() {
+		new Neter.Button({
+			container  : li.get(0),
+			name       : '&lt;&lt;Back',
+			clickEvent : function(button, options, event) {
+				Neter.log(options.name);
+			}
+		}).render().get().css({ marginLeft : 10 });
+		
+		new Neter.Button({
+			container  : li.get(1),
+			disabled   : true,
+			name       : '&lt;&lt;Back',
+			clickEvent : function(button, options, event) {
+				Neter.log(options.name);
+			}
+		}).render().get().css({ marginLeft : 10 });
+		
+		new Neter.Button({
+			container  : li.get(2),
+			front      : $('<img>', {
+				src       : '../../resources/images/user_group.png'
+			}).css('margin', '8px 0 0 2px'),
+			name       : 'UserGroup',
+			clickEvent : function(button, options, event) {
+				Neter.log(options.name);
+			}
+		}).render().get().css({ marginLeft : 10 });
+		
+		new Neter.Button({
+			container :li.get(3),
+			name      : '回复全部',
+			modify    : true,
+			menus     : [{
+				name : '回复全部（带附件）'
+			}, {
+				name : '回复全部（不带附件）'
+			}],
+			clickEvent : function(button, options, event) {
+				Neter.log(options.name);
+			}
+		}).render().get().css({ marginLeft : 10 });
+
+
+		new Neter.Button({
+			container :li.get(4),
+			split     : true,
+			name      : '回复全部',
+			front     : $('<img>', {
+				src       : '../../resources/images/reply.png'
+			}).css('margin', '8px 0 0 2px'),
+			menus     : [{
+				name : '回复全部（带附件）'
+			}, {
+				name : '回复全部（不带附件）'
+			}],
+			clickEvent : function(button, options, event) {
+				Neter.log(options.name);
+			}
+		}).render().get().css({ marginLeft : 10 });
+
+
+		new Neter.ComBox({
+			container : li.get(5),
+			items : [{
+				name : '邮件'
+			}, {
+				name : '附件'
+			}, {
+				name : '网盘'
+			}]
+		}).render();
+
+		new Neter.ComBox({
+			container  : li.get(6),
+			width      : 200,
+			allowInput : true,
+			'changeEvent' : function(combox, options, event) {
+				Neter.log('触发了changeEvent事件，当前的配置信息为：%o', options, 'log');
+			},
+			items : [{
+				name : '邮件',
+			front     : $('<img>', {
+				src       : '../../resources/images/reply.png'
+			}).css('margin', '8px 0 0 2px'),
+			}, {
+				name : '附件'
+			}, {
+				name : '网盘'
+			}]
+		}).render().insert(-1, { name : '有道笔记', type : 'read'}, true);
+	}()
 </script>
 </body>
 </html>

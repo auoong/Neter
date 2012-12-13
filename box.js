@@ -121,7 +121,7 @@
 			
 			handler.box
 			// 关闭按钮事件
-			.delegate('.neter-box-close-button', 'click', function(event) {
+			.on('click', '.neter-box-close-button', function(event) {
 				method.remove(event);
 			});
 			
@@ -143,9 +143,10 @@
 			var start = { left : left, top : top - defaults.slideHeight };
 			
 			handler.box
-				.css({ left : start.left, top : start.top, opacity : 0 })
-				.show()
-				.animate({ left : left, top : top, opacity : 1 });
+				&& handler.box
+					.css({ left : start.left, top : start.top, opacity : 0 })
+					.show()
+					.animate({ left : left, top : top, opacity : 1 });
 			
 			return this;
 		},
@@ -157,7 +158,7 @@
 			var defaults = _this.defaults,
 				handler  = _this.handler;
 			
-			handler.box.fadeOut('fast');
+			handler.box && handler.box.fadeOut('fast');
 			
 			return this;
 		},
@@ -263,6 +264,20 @@ new Neter.Box({ content : 'example...'}).render(false).show(100, 200);
 		arguments.length == 0 && (left = 'center', top = 'center');
 		this.method.show(left, top);
 		
+		return this;
+	},
+	/**
+	 * 获取或设置宽度
+	 * @function
+	 * @name Neter.Box.prototype.width
+	 * @param {Number|String} width 要设置的宽度，可以是auto或数字，省略则获取宽度
+	 */
+	width : function(width) {
+		if (!arguments.length) { return this.defaults.width; }
+
+		this.defaults.width = width;
+		this.method.initLayout();
+
 		return this;
 	},
 	/**
