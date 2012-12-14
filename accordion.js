@@ -266,13 +266,13 @@
 			
 			handler.accordion
 			// 菜单项事件
-			.delegate('.neter-accordion-item', 'click', function(event) {
+			.on('click', '.neter-accordion-item', function(event) {
 				(typeof defaults.itemEvent === 'function'
 					&& defaults.itemEvent.call(this, _this, method.getOptions(this), event) === false)
 				|| method.unselected().selected(this);
 			})
 			// 菜单组名事件
-			.delegate('.neter-accordion-item-group', 'click', function(event) {
+			.on('click', '.neter-accordion-item-group', function(event) {
 				(typeof defaults.itemEvent === 'function'
 					&& defaults.itemEvent.call(this, _this, method.getOptions(this), event) === false)
 				|| method.toggle(this);

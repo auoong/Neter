@@ -203,7 +203,7 @@
 				handler  = _this.handler,
 				current  = handler.current;
 			
-			handler.tagBar.delegate('div.neter-panel-tag', defaults.activeType, function() {
+			handler.tagBar.on(defaults.activeType, 'div.neter-panel-tag', function() {
 				_this.method.active(this);
 			});
 			

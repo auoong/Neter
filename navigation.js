@@ -232,14 +232,14 @@
 			
 			handler.ul
 			// 导航项单击事件
-			.delegate('li.neter-navigation-item', 'click', function(event) {
+			.on('click', 'li.neter-navigation-item', function(event) {
 				var index = $(this).index(),
 					options = method.getOptions(index) || {};
 				
 				method.active(index, options.reload, event);
 			})
 			// 导航项关闭按钮事件
-			.delegate('a.neter-navigation-item-close-button', 'click', function(event) {
+			.on('click', 'a.neter-navigation-item-close-button', function(event) {
 				var parent = $(this).parents('.neter-navigation-item'),
 					index  = parent.index();
 				

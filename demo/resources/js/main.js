@@ -64,16 +64,16 @@ $(function() {
 	
 	showMenu($('#header ul li.setting'));
 	$(document.body).click(hideMenu)
-	.delegate('#header ul li.setting', 'mouseenter', function() {
+	.on('mouseenter', '#header ul li.setting', function() {
 		var el = $(this);
 		$(this).find('b').css({ backgroundImage : 'url(../resources/images/arrow_down_white.png)' });
 		
 	})
-	.delegate('#header ul li.setting', 'mouseleave', function() {
+	.on('mouseleave', '#header ul li.setting', function() {
 		var el = $(this);
 		$(this).find('b').css({ backgroundImage : 'url(../resources/images/arrow_down.png)' });
 	})
-	.delegate('#delBtn', 'click', function() {
+	.on('click', '#delBtn', function() {
 		menu.remove('3,2');
 	});
 	

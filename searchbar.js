@@ -7,6 +7,7 @@
 
 /**
  * @class
+ * @requires Neter.Box
  * @name Neter.SearchBar
  * @param {Object} options 自定义配置信息
  <pre>
@@ -126,7 +127,7 @@
 			handler.searchBar
 			.click(function(event) { event.stopPropagation(); })
 			// 下拉选项按钮事件
-			.delegate('.neter-search-bar-options-button', 'click', function() {
+			.on('click', '.neter-search-bar-options-button', function() {
 				var offset = handler.searchBar.offset();
 				offset.left = defaults.alignment == 'right'
 								? offset.left - (handler.box.get().outerWidth() - handler.searchBar.outerWidth())
@@ -136,7 +137,7 @@
 				handler.box.show(offset.left, offset.top);
 			})
 			// 搜索按钮事件
-			.delegate('.neter-search-bar-search-button', 'click', function(event) {
+			.on('click', '.neter-search-bar-search-button', function(event) {
 				defaults.searchEvent
 					&& typeof defaults.searchEvent === 'function'
 					&& defaults.searchEvent.call(this, _this, handler.keyword, event);

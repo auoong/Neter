@@ -7,17 +7,20 @@
 
 /**
  * @class
+ * @requires Neter.Box
  * @name Neter.DropDownMenu
  * @param {Object} options 自定义配置信息，默认配置信息如下：
  <pre>
  options = {
-	alignment  : 'left',                // 菜单相对于触发对象的默认对齐方式，支持left/right
-	trigger    : null,                  // 触发菜单的元素对象
-	mode       : 'hover',               // 触发菜单的模式，支持hover/click
-	showStatus : true,                  // 是否显示选中状态，默认true
-	hoverTime  : 500,                   // 悬念时间，单位毫秒。当触发模式为hover时此参数起效
-	items      : [],                    // 菜单项对象集合
-	menuEvent  : null                   // 菜单项单击后触发的事件, this指向菜单项，menuEvent(dropDownMenu, options)
+	alignment   : 'left',                // 菜单相对于触发对象的默认对齐方式，支持left/right
+	trigger     : null,                  // 触发菜单的元素对象
+	mode        : 'hover',               // 触发菜单的模式，支持hover/click
+	slideHeight : 0,                     // 显示时滑动的高度差
+	showStatus  : true,                  // 是否显示选中状态，默认true
+	statusType  : 'icon',                // 选中项的显示状态，默认为icon，即添加一个图标，支持：icon/bg
+	hoverTime   : 500,                   // 悬念时间，单位毫秒。当触发模式为hover时此参数起效
+	items       : [],                    // 菜单项对象集合
+	menuEvent   : null                   // 菜单项单击后触发的事件, this指向菜单项，menuEvent(dropDownMenu, options)
 }
 </pre>
  */
@@ -25,13 +28,15 @@
 	var _this = this;
 	
 	this.defaults = {
-		alignment  : 'left',                // 菜单相对于触发对象的默认对齐方式，支持left/right
-		trigger    : null,                  // 触发菜单的元素对象
-		mode       : 'hover',               // 触发菜单的模式，支持hover/click
-		showStatus : true,                  // 是否显示选中状态，默认true
-		hoverTime  : 500,                   // 悬念时间，单位毫秒。当触发模式为hover时此参数起效
-		items      : [],                    // 菜单项对象集合
-		menuEvent  : null                   // 菜单项单击后触发的事件, this指向菜单项，menuEvent(dropDownMenu, options)
+		alignment   : 'left',                // 菜单相对于触发对象的默认对齐方式，支持left/right
+		trigger     : null,                  // 触发菜单的元素对象
+		mode        : 'hover',               // 触发菜单的模式，支持hover/click
+		slideHeight : 0,                     // 显示时滑动的高度差
+		showStatus  : true,                  // 是否显示选中状态，默认true
+		statusType  : 'icon',                // 选中项的显示状态，默认为icon，即添加一个图标，支持：icon/bg
+		hoverTime   : 500,                   // 悬念时间，单位毫秒。当触发模式为hover时此参数起效
+		items       : [],                    // 菜单项对象集合
+		menuEvent   : null                   // 菜单项单击后触发的事件, this指向菜单项，menuEvent(dropDownMenu, options)
 	};
 	
 	Neter.apply(this.defaults, options, {
@@ -356,7 +361,7 @@
 				defaults = _this.defaults;
 			
 			$(_this.handler.dropDownMenu)
-			.delegate('div.neter-drop-down-menu-item', 'mouseenter', function() {
+			.on('mouseenter', 'div.neter-drop-down-menu-item', function() {
 				var current = this;
 				
 				// 获取同级项，若同级项有子菜单，则隐藏
@@ -409,7 +414,7 @@
 					box.show(offset.left, offset.top);
 				}
 			})
-			.delegate('div.neter-drop-down-menu-item', 'mouseleave', function(event) {
+			.on('mouseleave', 'div.neter-drop-down-menu-item', function(event) {
 				var o = _this.method.getOptions(this);
 				
 				if (o && o.subMenus.items && o.subMenus.items.length) {
@@ -421,7 +426,7 @@
 					});
 				}
 			})
-			.delegate('div.neter-drop-down-menu-item', 'click', function(event) {
+			.on('click', 'div.neter-drop-down-menu-item', function(event) {
 				var o = _this.method.getOptions(this);
 				
 				if (o && o.subMenus.items && o.subMenus.items.length) {
@@ -436,14 +441,14 @@
 			if (defaults.mode == 'hover') {
 				var timer = null;
 				defaults.trigger
-				.live('mouseenter', function() {
+				.on('mouseenter', function() {
 					_this.delay(defaults.hoverTime).show();
 				})
-				.live('mouseleave', function() {
+				.on('mouseleave', function() {
 					_this.stop(true);
 				});
 			} else {
-				defaults.trigger.bind(defaults.mode, function(event) {
+				defaults.trigger.on(defaults.mode, function(event) {
 					_this.show();
 					
 					return false;
@@ -506,7 +511,7 @@
 					container    : handler.dropDownMenu,
 					width        : 'auto',
 					height       : 'auto',
-					slideHeight  : 0,
+					slideHeight  : defaults.slideHeight,
 					paddingWidth : 2,
 					closeButton  : false
 				}).render(false);
@@ -576,7 +581,7 @@
 		 * @param {Boolean} flag 是否要触发菜单事件，默认为false
 		 */
 		selected : function(item, flag) {
-			var showStatus = _this.defaults.showStatus,
+			var defaults   = _this.defaults,
 				items      = _this.handler.menus.items,
 				fun        = function(items, item) {
 					var res;
@@ -585,18 +590,22 @@
 					for (var i = 0, len = items.length; i < len; ++i) {
 						if (items[i].subMenus.items.length > 0) {
 							if (fun(items[i].subMenus.items, item)) {
-								(items[i].selected = true) && showStatus && items[i].el.children().first().show();
+								(items[i].selected = true)
+									&& defaults.showStatus
+									&& (defaults.statusType == 'icon' ? items[i].el.children().first().show() : items[i].el.addClass('neter-drop-down-menu-item-selected'));
 								return true;
 							}
 						} else if (items[i].el && item.el && items[i].el.get(0) == item.el.get(0)) {
-							(items[i].selected = true) && showStatus && items[i].el.children().first().show();
+							(items[i].selected = true)
+								&& defaults.showStatus
+								&& (defaults.statusType == 'icon' ? items[i].el.children().first().show() : items[i].el.addClass('neter-drop-down-menu-item-selected'))
+							
 							flag && items[i].el.trigger('click');
 							return true;
 						}
 					}
 					return false;
 				};
-			
 			
 			fun(items, this.getOptions(item));
 			
@@ -607,13 +616,16 @@
 		 * @ignore
 		 */
 		unselected : function() {
-			var fun = function(items) {
+			var defaults = _this.defaults,
+				fun = function(items) {
 				var res;
 				for (var i = 0, len = items.length; i < len; ++i) {
 					var front = items[i].el.children().first();
 					
 					// 隐藏非自定义前置项。
 					front.children().length || front.hide();
+
+					items[i].el.removeClass('neter-drop-down-menu-item-selected');
 					
 					// 取消选中状态
 					items[i].selected = false;
@@ -625,6 +637,23 @@
 			
 			fun(_this.handler.menus.items);
 			
+			return this;
+		},
+		/**
+		 * 删除插件
+		 * @ignore
+		 */
+		remove : function(menus) {
+			var method = this;
+			menus = menus || _this.handler.menus;
+
+			// 递归销毁所有的box
+			menus.box && menus.box.remove();
+
+			for (var i = 0, len = menus.items.length; i < len; ++i) {
+				menus.items[i].subMenus && method.remove(menus.items[i].subMenus);
+			}
+
 			return this;
 		}
 	};
@@ -770,7 +799,9 @@
 	 * 删除指定的菜单项
 	 * @function
 	 * @name Neter.DropDownMenu.prototype.remove
-	 * @param {Number|String|HTMLElement} index 要删除的菜单项对象，菜单名称或索引，如果是子菜单（按索引删除），使用逗号分隔索引值，支持多个参数，若省略参数则删除菜单对象
+	 * @param {Number|String|HTMLElement} index 要删除的菜单项对象，菜单名称或索引，
+	 * 如果仅有一个参数，且为true则为移除插件本身
+	 * 如果是子菜单（按索引删除），使用逗号分隔索引值，支持多个参数
 	 */
 	remove : function(index /* [, index, ... ] */) {
 		var _this  = this,
@@ -803,11 +834,19 @@
 							subMenus.items.splice(i, 1);
 						}
 						
-						subMenus.box = null;
+						subMenus.box   = null;
 						subMenus.items = [];
 					}
 				});
 			};
+
+		// 如果仅一个true参数，则删除插件，并且返回null
+		if (index === true) {
+			this.method.remove();
+			this.handler.dropDownMenu.remove();
+
+			return null;
+		}
 
 		fun.apply(_this, arguments);
 		
@@ -826,11 +865,36 @@
 		return this;
 	},
 	/**
+	 * 设置菜单项是否显示状态
+	 * @function
+	 * @name Neter.DropDownMenu.prototype.showStatus
+	 * @param {Boolean} show true为显示状态，false为不显示。
+	 * @return {Neter.DropDownMenu} 返回插件的引用
+	 */
+	showStatus : function(show) {
+		this.defaults.showStatus = show;
+
+		return this;
+	},
+	/**
+	 * 设置菜单项的当前选中项样式
+	 * @function
+	 * @name Neter.DropDownMenu.prototype.statusType
+	 * @param {String} type 选中项样式，支持：icon/bg
+	 * @return {Neter.DropDownMenu} 返回插件的引用
+	 */
+	statusType : function(type) {
+		this.defaults.statusType = type === 'bg' ? 'bg' : 'icon';
+
+		return this;
+	},
+	/**
 	 * 选中指定的菜单项
 	 * @function
 	 * @name Neter.DropDownMenu.prototype.selected
 	 * @param {Number|String|HTMLElement} index 要选中的菜单项索引，子菜单项使用逗号分隔
 	 * @param {Boolean} flag 是否触发选中菜单项的事件，默认为true
+	 * @return {Neter.DropDownMenu} 返回插件的引用
 	 */
 	selected : function(index, flag) {
 		this.method.unselected().selected(index, flag !== false);
@@ -841,6 +905,7 @@
 	 * 取消选中项
 	 * @function
 	 * @name Neter.DropDownMenu.prototype.unselected
+	 * @return {Neter.DropDownMenu} 返回插件的引用
 	 */
 	unselected : function() {
 		this.method.unselected();
@@ -852,6 +917,7 @@
 	 * @function
 	 * @name Neter.DropDownMenu.prototype.menuEvent
 	 * @param {Function} handler 新的菜单项事件
+	 * @return {Neter.DropDownMenu} 返回插件的引用
 	 */
 	menuEvent : function(handler) {
 		if (typeof handler === 'function') {

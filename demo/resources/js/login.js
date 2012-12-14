@@ -45,13 +45,13 @@ $(function() {
 	
 	// 代理页面中的事件
 	$(document)
-	.delegate('#autoLoginOptions', 'click', function() {
+	.on('click','#autoLoginOptions', function() {
 		this.checked && tips.update('最近两周将会自动登录').show('success');
 	})
-	.delegate('#loginBtn', 'click', function() {
+	.on('click', '#loginBtn', function() {
 		$(document.body).fadeOut('slow', function() { location.href = 'main.html'; });
 	})
-	.delegate('#regBtn', 'click', function() {
+	.on('click', '#regBtn', function() {
 		tips.update('系统维护中，稍候再注册').show('warning');
 	});
 });
