@@ -1,0 +1,39 @@
+<div id="inboxNavigation">
+
+</div>
+<script type="text/javascript">
+    ~function() {
+        var buttonsBar = new Neter.ButtonsBar({
+            container : $('#inboxNavigation'),
+            keepStatus : true,
+            clickEvent : function(button, options, event) {
+                Neter.log('当前按钮：%o', options.name, 'log');
+            },
+            buttons : [{
+                name : '标记为',
+                menus : [{
+                    name : '已读'
+                }, {
+                    name : '未读'
+                }]
+            }, {
+                name : '移动到',
+                menus : [{
+                    name : '草稿箱'
+                }, {
+                    name : '已发送'
+                }, {
+                    name : '已删除'
+                }, {
+                    name : '订阅邮件'
+                }]
+            }, {
+                name : '举报'
+            }]
+        }).render().selected('移动到');
+
+        new Neter.Tips({ msg : '两秒后删除“举报”按钮'}).render().show();
+
+        setTimeout(function() { buttonsBar.remove('举报');}, 2 * 1000);
+    }();
+</script>
