@@ -289,3 +289,9 @@ ul.buttons li.write {
 	font-family: "neter";
 	display: none;
 }
+
+#inboxNavigation {
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}

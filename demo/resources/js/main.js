@@ -95,7 +95,7 @@ $(function() {
 			{ name : '首页', url : 'template/home.html' },
 			{ name : '通讯录', url : 'template/contact.html', closeButton : true },
 			{ name : '邮箱应用设置', url  : 'template/app.html', closeButton : true },
-			{ name : '收件箱', url : 'template/help.html', closeButton : true }
+			{ name : '收件箱', url : 'template/inbox.html', closeButton : true, reload : false }
 		],
 		optionsStatus : true,
 		optionsMenu   : [{ name : '关闭全部', front : $('<img>', { src : Neter.path() + 'resources/images/close_all.png' }) }],
@@ -297,7 +297,7 @@ function showMenu(el) {
 			if (options.name == '换肤') {
 				navigation.getIndex('换肤') == -1 && navigation.insert(-1, { name : '换肤', closeButton : true, url : 'template/skin.html' });
 				
-				navigation.active('换肤').optionsMenuTrigger('insert', -1, { name : '换肤', selected : true });
+				//navigation.active('换肤').optionsMenuTrigger('insert', -1, { name : '换肤', selected : true });
 			}
 			dropDownMenu.hide();
 		}
