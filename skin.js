@@ -58,6 +58,12 @@
             left  : 0,
             top   : 0
         }, {
+//            name  : '简洁蓝',
+//            color : '#3AA9CE',
+//            path  : 'concise.css',
+//            left  : 0,
+//            top   : 0
+//        }, {
             name  : '墨蓝',
             color : '#567086',
             path  : 'darkblue.css',

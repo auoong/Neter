@@ -493,13 +493,19 @@ button.neter-search-bar-search-button:hover {
 .neter-navigation-item-close-button b {
 	position: absolute;
 	left: 3px;
-	top: -3px;
+	top: -1px;
 	height: 16px;
 	line-height: 12px;
 	overflow: hidden;
 	font-family: "neter" !important;
 	cursor: pointer;
 }
+
+.neter-navigation-item-close-button:hover b {
+	left: 2px;
+	top: -2px;
+}
+
 /* 导航分隔线 */
 .neter-navigation-separator {
 	position: absolute;
@@ -709,7 +715,7 @@ button.neter-search-bar-search-button:hover {
 	left: 17px;
 }
 .neter-dock-start-button .lb {
-	background: transparent;
+	background: transparent !important;
 	top: 17px;
 }
 .neter-dock-start-button .rb {

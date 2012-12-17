@@ -114,7 +114,7 @@ $(function() {
 
 	// 加载触点插件
 	var dock = new Neter.Dock({
-		showType : 'h',
+		showType : 'v',
 		blink : true,
 		group : false,    // 为false时subApps不被加载；当true时，showType会强制设置为v
 		items : [{
@@ -297,7 +297,7 @@ function showMenu(el) {
 			if (options.name == '换肤') {
 				navigation.getIndex('换肤') == -1 && navigation.insert(-1, { name : '换肤', closeButton : true, url : 'template/skin.html' });
 				
-				navigation.active('换肤').optionsMenuTrigger('insert', -1, { name : '换肤', selected : true });
+				//navigation.active('换肤').optionsMenuTrigger('insert', -1, { name : '换肤', selected : true });
 			}
 			dropDownMenu.hide();
 		}
