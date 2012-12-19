@@ -1,6 +1,6 @@
 <section class="home">
 	<div class="navigation">
-		<a href="###" class="control-button"></a>
+		<a href="###" class="control-button"><b></b></a>
 		<div class="contact-buttons">
 			<ul class="buttons">
 				<li class="receive">
@@ -93,25 +93,15 @@
 			// 互斥执行下面的两组事件
 			!~(flag = flag * -1)
 				// 折叠事件
-				? $('.navigation').animate({ height : 12 }, function() {
-					$(this).animate({ width  : 13 }, function() {
-						  self.css('background', 'url(../resources/images/next_disabled.png) no-repeat 0 0 ');
-						  $(window).trigger('resize');
-						})
-				  })
-				// 展开事件
-				: $('.navigation').animate({ width : orig.width }, function() {
-					  $(this).animate({ height : orig.height });
-					  self.css('background', 'url(../resources/images/prev_disabled.png) no-repeat 0 0 ');
+				? $('.navigation').animate({ width  : 0 }, 20, function() {
+					  $(this).find('b').css('background', 'url(../resources/images/arrow_right.png) no-repeat 0 0 ');
 					  $(window).trigger('resize');
 				  })
-		})
-		// 鼠标悬停时的事件，本来放在css中的，但由于是需要4张图片切换，因此还是用js来控制。
-		.live('mouseenter', function() {
-			$(this).css('background', $(this).css('background-image').replace(/_disabled/g, ''));
-		})
-		.live('mouseleave', function() {
-			$(this).css('background', $(this).css('background-image').replace('.png', '_disabled.png'));
+				// 展开事件
+				: $('.navigation').animate({ width : orig.width }, 20, function() {
+					  $(this).find('b').css('background', 'url(../resources/images/arrow_left.png) no-repeat 0 0 ');
+					  $(window).trigger('resize');
+				  });
 		});
 	})();
 </script>

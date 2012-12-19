@@ -593,7 +593,7 @@
                     break;
             }
 
-            handler.dockStart.data('status', 'close');
+            handler.dockStart.data('status', 'open');
             
             return this;
         },
@@ -611,6 +611,8 @@
             handler.fullList.hide();
             handler.childList.hide();
             handler.childListArrow.hide();
+
+            handler.dockStart.data('status', 'close');
 
             return this;
         },
