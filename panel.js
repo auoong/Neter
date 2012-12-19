@@ -17,8 +17,8 @@
     defaultTag : 0,
     container  : document.body,     // 面板容器，即将面板放于哪个元素之内，默认为body
     bodies     : [{                 // 面板主体，至少包含一个元素
-        tag     : '',
-        content : ''
+        tag        : '',
+        content    : ''
     }],
     activeType : 'hover'            // 激活标签的方式，hover/click，默认为hover,即鼠标滑过则切换
  }

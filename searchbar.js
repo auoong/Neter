@@ -17,7 +17,7 @@
     optionsWindowWidth  : 300,                 // 下拉选项框的宽度
     optionsWindowHeight : 200,                 // 下拉选项框的高度
     alignment           : 'left',              // 对齐方式，默认为left，仅支持left/right
-    placeholder         : '关键字',             // 搜索框占位符
+    placeholder         : '关键字',            // 搜索框占位符
     keyword             : '',                  // 默认的或者输入的关键字
     optionsWindow       : null,                // 下拉选项内容
     searchEvent         : null                 // 搜索按钮事件
@@ -33,7 +33,7 @@
         optionsWindowWidth  : 300,                 // 下拉选项框的宽度
         optionsWindowHeight : 200,                 // 下拉选项框的高度
         alignment           : 'left',              // 对齐方式，默认为left，仅支持left/right
-        placeholder         : '关键字',             // 搜索框占位符
+        placeholder         : '关键字',            // 搜索框占位符
         keyword             : '',                  // 默认的或者输入的关键字
         optionsWindow       : null,                // 下拉选项内容
         searchEvent         : null                 // 搜索按钮事件
