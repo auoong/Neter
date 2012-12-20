@@ -21,15 +21,16 @@
     // 当url参数存在时，屏蔽content参数
     // cache参数仅对url有效。默认开启缓存
     // [{
-    //      name        : '导航项名称',
-    //      content     : '对应的内容',
-    //      url         : '对应的url',
-    //      cache       : true,
-    //      reload      : '激活时是否总是加载新的页面，默认为true',
-    //      front       : '前置对象',
-    //      rear        : '后置对象',
-    //      active      : false,
-    //      closeButton : false
+    //      name              : '导航项名称',
+    //      content           : '对应的内容',
+    //      url               : '对应的url',
+    //      cache             : true,
+    //      reload            : '激活时是否总是加载新的页面，默认为true',
+    //      front             : '前置对象',
+    //      rear              : '后置对象',
+    //      active            : false,
+    //      removedActiveItem : '删除此项后需激活的项名称',
+    //      closeButton       : false
     //  }]
     items            : [],
     // 导航项默认宽度，即最大宽度
@@ -64,15 +65,16 @@
         // 当url参数存在时，屏蔽content参数
         // cache参数仅对url有效。默认开启缓存
         // [{
-        //      name        : '导航项名称',
-        //      content     : '对应的内容',
-        //      url         : '对应的url',
-        //      cache       : true,
-        //      reload      : '激活时是否总是加载新的页面，默认为true',
-        //      front       : '前置对象',
-        //      rear        : '后置对象',
-        //      active      : false,
-        //      closeButton : false
+        //      name              : '导航项名称',
+        //      content           : '对应的内容',
+        //      url               : '对应的url',
+        //      cache             : true,
+        //      reload            : '激活时是否总是加载新的页面，默认为true',
+        //      front             : '前置对象',
+        //      rear              : '后置对象',
+        //      active            : false,
+        //      removedActiveItem : '删除此项后需激活的项名称',
+        //      closeButton       : false
         //  }]
         items            : [],
         // 导航项默认宽度，即最大宽度
@@ -415,15 +417,16 @@
      * @param {Object} options 导航项配置信息
      <pre>
         options = {
-            name        : '导航项名称',
-            content     : '对应的内容',
-            url         : '对应的url',
-            cache       : true,
-            reload      : '激活时是否总是加载新的页面，默认为true',
-            front       : '前置对象',
-            rear        : '后置对象',
-            active      : false,
-            closeButton : false
+            name              : '导航项名称',
+            content           : '对应的内容',
+            url               : '对应的url',
+            cache             : true,
+            reload            : '激活时是否总是加载新的页面，默认为true',
+            front             : '前置对象',
+            rear              : '后置对象',
+            active            : false,
+            removedActiveItem : '删除此项后需激活的项名称',
+            closeButton       : false
         }
     </pre>
      * @return {Neter.Navigation} 返回插件引用
@@ -442,15 +445,16 @@
      * @param {Object} options 导航项配置信息
      <pre>
         options = {
-            name        : '导航项名称',
-            content     : '对应的内容',
-            url         : '对应的url',
-            cache       : true,
-            front       : '前置对象',
-            rear        : '后置对象',
-            reload      : '激活时是否总是加载新的页面，默认为true'
-            active      : false,
-            closeButton : false
+            name              : '导航项名称',
+            content           : '对应的内容',
+            url               : '对应的url',
+            cache             : true,
+            front             : '前置对象',
+            rear              : '后置对象',
+            reload            : '激活时是否总是加载新的页面，默认为true'
+            active            : false,
+            removedActiveItem : '删除此项后需激活的项名称',
+            closeButton       : false
         }
         </pre>
      * @return {Neter.Navigation} 返回插件引用
@@ -495,7 +499,10 @@
             index    = arguments.length
                         ? $.map([].slice.call(arguments, 0), function(n, i) { return method.getIndex(n); }).sort().reverse()
                         : $.map(new Array(items.length), function(n, i) { return i; }).reverse(),
-            minIndex = Math.min.apply(null, index);
+            minIndex = Math.min.apply(null, index),
+
+            // 要激活的项，用于删除后手动指定激活项，若没有则激活最小项左边的
+            activeItem = '';
         
         $.each(index, function(index, item) {
             index = item;
@@ -514,6 +521,9 @@
                 if (!flag) { return ; }
                 
                 auto = auto || item.el.hasClass('neter-navigation-item-selected');
+
+                activeItem = item.removedActiveItem || '';
+
                 item.el.empty().remove() && item.view.empty().remove();
                 
                 item.el    = null;
@@ -528,7 +538,8 @@
         this.method.initLayout();
         
         // 自动激活被删除项左侧的项
-        auto && this.active(Math.max(0, minIndex - 1));
+
+        auto && this.active(activeItem || Math.max(0, minIndex - 1));
         
         return this;
     },

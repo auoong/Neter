@@ -95,7 +95,7 @@ $(function() {
 			{ name : '首页', url : 'template/home.html' },
 			{ name : '通讯录', url : 'template/contact.html', closeButton : true },
 			{ name : '邮箱应用设置', url  : 'template/app.html', closeButton : true },
-			{ name : '收件箱', url : 'template/inbox.html', closeButton : true, reload : false }
+			{ name : '收件箱', url : 'template/inbox.html', closeButton : true, reload : false, removedActiveItem : '首页' }
 		],
 		optionsStatus : true,
 		optionsMenu   : [{ name : '关闭全部', front : $('<img>', { src : Neter.path() + 'resources/images/close_all.png' }) }],
