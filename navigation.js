@@ -295,7 +295,7 @@
             // 创建导航项
             // 包含三个区域，前置区域，用于用户自定义图标或做其他用；名称，即导航项名称；后置区域，默认用来显示关闭按钮，也可用户自定义。
             item.append($('<span></span>').addClass('neter-navigation-item-front').append(options.front || null))
-                .append($('<span></span>').addClass('neter-navigation-item-name').html(options.name))
+                .append($('<span></span>').addClass('neter-navigation-item-name').attr('title', options.name).html(options.name))
                 .append($('<span></span>').addClass('neter-navigation-item-rear'));
             
             children = item.children();
@@ -471,7 +471,7 @@
             // 如果当前的菜单项有子菜单项，则不可以添加后置对象
             options.rear && children.last().empty().append(options.rear).show();
             
-            options.name !== current.name && el.children('.neter-navigation-item-name').html(options.name);
+            options.name !== current.name && el.children('.neter-navigation-item-name').attr('title', options.name).html(options.name);
             
             children.last()[options.closeButton ? 'show' : 'hide']();
             

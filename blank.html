@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>blank</title>
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="core.js"></script>
+	<script type="text/javascript" src="skin.js"></script>
+	<style>
+		html, body {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		body {
+			position: relative;
+			padding: 3px 15px 5px 0;
+			overflow: hidden;
+		}
+		div {
+			width: 186px;
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+		}
+		img {
+			border: 0;
+			height: 100%;
+			margin-left: -1px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container"><img src="resources/images/blue/dock_bg.png" /></div>
+	<script type="text/javascript">
+		var timer = setInterval(function() {
+			if ($('body').height() > 10) {
+				//clearInterval(timer);
+				$('#container').height($('body').height() - 16);
+			}
+		}, 100);
+
+		var skin = '';
+		setInterval(function() {
+			if (top.Neter && skin !== top.Neter.skin()) {
+				skin = top.Neter.skin();
+
+				var o = new Neter.Skin().getSkin(skin);
+
+				$('#container img').attr('src', 'resources/images/' + o.folder + '/dock_bg.png');
+			}
+		}, 1000);
+	</script>
+</body>
+</html>

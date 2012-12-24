@@ -1,65 +1,108 @@
-<pre>
-    网易网盘
-        在线文件存储服务
+<style type="text/css">
+    .app {
+        list-style: none;
+    }
+    .app li {
+        overflow: hidden;
+    }
+    #lineHeightSettingContainer, #mailSettings {
+        position: relative;
+        float: left;
+    }
+    .label {
+        float: left;
+        width: 150px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+</style>
+<ul class="app">
+    <li>
+        <span class="label">行高设置：</span>
+        <div id="lineHeightSettingContainer"></div>
+    </li>
+    <li id="rButtonContainer">
 
-    已添加
+    </li>
+    <li>
+        <span class="label">邮箱设置：</span>
+        <div id="mailSettings"></div>
+    </li>
+     <li id="cButtonContainer">
 
-    简历中心
-        一站式求职平台
+    </li>
+</ul>
+<script type="text/javascript">
 
-    已添加
+    ~function() {
+        var rg = new Neter.RadioGroup({
+            container     : $('#lineHeightSettingContainer'),
+            showType      : 'v',
+            selectedEvent : function(radioGroup, options, event) {
+                //console.log(options);
+            },
+            radios : [{
+                label : '宽松',
+                name  : '宽松',
+                value : 'ks'
+            }, {
+                label    : '适中',
+                name     : '适中',
+                value    : 'sz',
+                selected : true,
+                disabled : true
+            }, {
+                label : '紧凑',
+                name  : '紧凑',
+                value : 'jc'
+            }, {
+                label : '密集',
+                name  : '密集',
+                value : 'mj'
+            }]
+        }).render().disabled(false);
 
-    日程管理
-        管理自己每天的日程安排
+        new Neter.Button({
+            container  : $('#rButtonContainer'),
+            name       : '获取单选钮组选中项',
+            clickEvent : function(button, options, event) {
+                Neter.log('选中的按钮：%o', rg.selected(), 'log');
+            }
+        }).render();
 
-    已添加
+         var cg = new Neter.CheckboxGroup({
+            container     : $('#mailSettings'),
+            showType      : 'v',
+            selectedEvent : function(checkboxGroup, options, event) {
+                //console.log(options);
+            },
+            checkboxes : [{
+                label : '紧急',
+                name  : '紧急',
+                value : 'jj'
+            }, {
+                label    : '已读回执',
+                name     : '已读回执',
+                value    : 'ydhz',
+                selected : true,
+                disabled : true
+            }, {
+                label : '纯文本',
+                name  : '纯文本',
+                value : 'cwb'
+            }, {
+                label : '邮件加密',
+                name  : '邮件加密',
+                value : 'yjjm'
+            }]
+        }).render().selected('紧急', '纯文本');
 
-    电子名片
-        创建后可当附件发送
-
-    邮箱贺卡
-        音乐酷卡，网上传情
-
-    已添加
-
-    更新通知
-        便捷的消息资讯订阅平台
-
-    用户俱乐部
-        尊享邮箱特权与积分回馈
-
-    已添加
-
-    邮箱音乐盒
-        海量在线正版音乐平台
-
-    网易微博
-        有态度的微博
-
-    已添加
-
-    集邮中心
-        轻松发信，快乐集邮
-
-    已添加
-
-    明信片
-        精心DIY一张电子明信片
-
-    已添加
-
-    游戏天地
-        网易游戏的最新资讯
-
-    理财易
-        在线记账的理财好帮手
-
-    已添加
-
-    记事本
-        随手记录事项备忘
-
-    网易优惠券
-        品牌折扣、免费单品
-
-</pre>
+        new Neter.Button({
+            container  : $('#cButtonContainer'),
+            name       : '获取多选钮组选中项',
+            clickEvent : function(button, options, event) {
+                Neter.log('选中的按钮：%o', cg.selected(), 'log');
+            }
+        }).render();
+    }();
+</script>

@@ -121,6 +121,8 @@
 
             _super.create.call(this);
 
+            handler.button.addClass('neter-combox');
+
             // 创建输入框项
             handler.input = $('<input>', { type : 'text', maxlength : 100 }).addClass('neter-combox-input')
                 .val(defaults.name)

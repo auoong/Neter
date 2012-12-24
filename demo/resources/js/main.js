@@ -116,7 +116,8 @@ $(function() {
 	var dock = new Neter.Dock({
 		showType : 'v',
 		blink : true,
-		group : false,    // 为false时subApps不被加载；当true时，showType会强制设置为v
+		group : true,    // 为false时subApps不被加载；当true时，showType会强制设置为v
+		maskFlash : true,
 		items : [{
 			name : '通讯录',
 			icon : '../resources/images/apps/address_48.png',

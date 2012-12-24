@@ -52,11 +52,12 @@
     this.defaults = {
         defaultSkin : Neter.skin() || '天空蓝',
         skins : [{
-            name  : '天空蓝',
-            color : '#135BA5',
-            path  : 'blue.css',
-            left  : 0,
-            top   : 0
+            name   : '天空蓝',
+            color  : '#135BA5',
+            path   : 'blue.css',
+            folder : 'blue',
+            left   : 0,
+            top    : 0
         }, {
 //            name  : '简洁蓝',
 //            color : '#3AA9CE',
@@ -64,29 +65,33 @@
 //            left  : 0,
 //            top   : 0
 //        }, {
-            name  : '墨蓝',
-            color : '#567086',
-            path  : 'darkblue.css',
-            left  : '0',
-            top   : '-180px'
+            name   : '墨蓝',
+            color  : '#567086',
+            path   : 'darkblue.css',
+            folder : 'darkblue',
+            left   : '0',
+            top    : '-180px'
         }, {
-            name  : '清新绿',
-            color : '#037C11',
-            path  : 'green.css',
-            left  : '-90px',
-            top   : 0
+            name   : '清新绿',
+            color  : '#037C11',
+            path   : 'green.css',
+            folder : 'green',
+            left   : '-90px',
+            top    : 0
         }, {
-            name  : '海水蓝',
-            color : '#0086B1',
-            path  : 'yeahblue.css',
-            left  : '-450px',
-            top   : 0
+            name   : '海水蓝',
+            color  : '#0086B1',
+            path   : 'yeahblue.css',
+            folder : 'yeahblue',
+            left   : '-450px',
+            top    : 0
         }, {
-            name  : '咖啡时光',
-            color : '#CDB592',
-            path  : 'coffee.css',
-            left  : '-450px',
-            top   : '-180px'
+            name   : '咖啡时光',
+            color  : '#CDB592',
+            path   : 'coffee.css',
+            folder : 'coffee',
+            left   : '-450px',
+            top    : '-180px'
         }]
     };
     
