@@ -9,7 +9,8 @@
     // 插件相对于调用页面的路径
     var __path__  = '',
         __skin__  = '天空蓝',
-        __color__ = '#135BA5';
+        __color__ = '#135BA5',
+        __count__ = 0;
     
     /**
      * @static
@@ -147,6 +148,22 @@
                 __color__ = color;
             }
             return this;
+        },
+        /**
+         * 计数器
+         * @static
+         * @function
+         * @name Neter.count
+         * @param {Number} [count=0] 计数起始值，默认为0
+         * @return {Number|Neter} 带有count参数返回Neter引用，否则返回当前系统计数。
+         */
+        count : function(count) {
+            if (typeof count === 'number') {
+                __count__ = count;
+                return this;
+            } else {
+                return __count__++;
+            }
         }
     });
 })(window, $);

@@ -768,6 +768,15 @@ button.neter-search-bar-search-button:hover {
     left: 202px;
     display: none;
 }
+.neter-dock-iframe {
+    position: absolute;
+    z-index: -1;
+    width : 100%;
+    height: 100%;
+    border: 0;
+    background: #FFF;
+    display: none;
+}
 /* 二级应用程序标志 */
 .neter-dock-child-list-arrow,
 .neter-dock-child-list-arrow-h {
@@ -1497,6 +1506,10 @@ button.neter-search-bar-search-button:hover {
 
 /* Neter.ComBox（组合框插件） */
 
+/* 组合框 */
+.neter-combox {
+    border-radius: 0 !important;
+}
 /* 组合框可输入框 */
 input[type=text].neter-combox-input {
     position: absolute;
@@ -1514,4 +1527,78 @@ input[type=text].neter-combox-input {
 .neter-combox-label-fix {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+
+/** Neter.RadioGroup（单选按钮组插件）*/
+
+/* 按钮组横向布局（默认） */
+.neter-radio-group-radio,
+.neter-radio-group-radio-v,
+.neter-checkbox-group-checkbox,
+.neter-checkbox-group-checkbox-v {
+    position: relative;
+    display: inline-block;
+    margin: 9px 26px 0 0;
+    padding-left: 23px;
+    cursor: default;
+}
+/* 按钮组纵向布局 */
+.neter-radio-group-radio-v,
+.neter-checkbox-group-checkbox-v {
+    display: block;
+}
+/* 单选钮图表样式 */
+.neter-radio-group-radio-icon,
+.neter-radio-group-radio-icon-selected,
+.neter-radio-group-radio-icon-disabled,
+.neter-radio-group-radio-icon-selected-disabled,
+.neter-checkbox-group-checkbox-icon,
+.neter-checkbox-group-checkbox-icon-selected,
+.neter-checkbox-group-checkbox-icon-disabled,
+.neter-checkbox-group-checkbox-icon-selected-disabled {
+    height: 14px;
+    width: 14px;
+    left: 0;
+    position: absolute;
+    white-space: nowrap;
+    cursor: default;
+}
+.neter-radio-group-radio-icon b,
+.neter-checkbox-group-checkbox-icon b {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: url(../images/radio.png) no-repeat 0 0;
+    height: 14px;
+    width: 14px;
+}
+.neter-radio-group-radio-icon-selected b {
+    background-image: url(../images/radio_checked.png);
+}
+.neter-radio-group-radio-icon-disabled b {
+    background-image: url(../images/radio_disabled.png);
+}
+.neter-radio-group-radio-icon-selected-disabled b {
+    background-image: url(../images/radio_checked_disabled.png);
+}
+.neter-radio-group-radio-label,
+.neter-checkbox-group-radio-label {
+    white-space: nowrap;
+    cursor: default;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.neter-checkbox-group-checkbox-icon b {
+    background: url(../images/checkbox.png) no-repeat 0 0;
+}
+.neter-checkbox-group-checkbox-icon-selected b {
+    background-image: url(../images/checkbox_checked.png);
+}
+.neter-checkbox-group-checkbox-icon-disabled b {
+    background-image: url(../images/checkbox_disabled.png);
+}
+.neter-checkbox-group-checkbox-icon-selected-disabled b {
+    background-image: url(../images/checkbox_checked_disabled.png);
 }

@@ -70,3 +70,53 @@ ul.buttons li {
 .receive .icon, .write .icon {
 	background: url(../images/green/bg.png) no-repeat 0 -192px;
 }
+
+
+/*************************************************************************************/
+/* Neter.Dock插件 */
+
+/* 开始按钮 */
+.neter-dock-start-button {
+	background: url(../images/blue/global.png) no-repeat 0px 0px\9;
+	background: #44612A;
+}
+/* 显示模式为纵向时的开始按钮触发 */
+.neter-dock-start-button-open-v {
+	background: url(../images/blue/global.png) no-repeat -2px -80px\9;
+	background: #44612A;
+}
+/* 显示模式为横向时的开始按钮触发 */
+.neter-dock-start-button-open-h {
+	background: url(../images/blue/global.png) no-repeat -2px -130px\9;
+	background: #44612A !important;
+}
+/* 开始按钮上的方块 */
+.neter-dock-start-button .lt,
+.neter-dock-start-button .rt,
+.neter-dock-start-button .lb,
+.neter-dock-start-button .rb {
+	position: absolute;
+	background: #FFF;
+	border: 1px solid #FFF;
+}
+/* 左下空心方块 */
+.neter-dock-start-button .lb {
+	background: transparent !important;
+}
+/* 应用程序列表 */
+.neter-dock-list, .neter-dock-list-h {
+	background: url(../images/blue/apps_bg.png) repeat 0 0\9;
+	background: rgba(0, 0, 0,.2);
+}
+/* 鼠标悬停时的应用程序 */
+.neter-dock-list-item:hover {
+	background-color: rgba(0, 0, 0, .1);
+}
+/* 应用程序列表中名称样式 */
+.neter-dock-list-name {
+	color: #FFF;
+}
+/* 全屏模式下应用程序 */
+.neter-dock-full-list-name {
+	color: #FFF;
+}

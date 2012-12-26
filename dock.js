@@ -11,20 +11,22 @@
  * @param {Object} options 自定义配置信息，默认配置信息如下：
  <pre>
  options = {
-    container : document.body,
+    container    : document.body,
     // 插件显示位置，插件的位置基本固定在左下角
-    left      : 14,
-    bottom    : 14,
+    left         : 14,
+    bottom       : 14,
     // 列表中最多显示的应用的个数
-    showCount : 10,
+    showCount    : 10,
     // 插件显示方式：h-横向显示，v-纵向显示，f-全屏显示
-    showType  : 'v',
+    showType     : 'v',
     // 当前插件的显示模式：list/full
     currentModel : 'list',
     // 是否显示闪烁提示
-    blink     : false,
+    blink        : false,
     // 是否支持分组，默认为false，若支持分组则仅按v模式来显示，切不能全屏。
-    group     : false,
+    group        : false,
+    // 是否启用flash遮挡
+    maskFlash    : false,
     // 应用程序对象数组
     // 格式：{
     //      name  : '应用程序名称',
@@ -33,10 +35,9 @@
     //      data  : '应用程序的数据，不是必须属性',
     //      // data2 : '另一些数据'   所有的配置信息都会在应用程序事件的回调中返回，以被用户使用。
     //  }
-    
-    items     : [],
+    items           : [],
     // 应用程序事件，触发时带有的参数：itemEvent(dock, options, event)
-    itemEvent : null,
+    itemEvent       : null,
     // 应用程序删除事件，触发时带有的参数：itemEvent(dock, options, event)
     removeItemEvent : null
  }
@@ -60,6 +61,8 @@
         blink           : false,
         // 是否支持分组，默认为false，若支持分组则仅按v模式来显示，切不能全屏。
         group           : false,
+        // 是否启用flash遮挡
+        maskFlash       : false,
         /**
         * 应用程序对象数组
         格式：{
@@ -98,7 +101,9 @@
         // 全屏模式的视图宽度
         VIEW_WIDTH_FOR_FULL_LIST        : 848,
         // 全屏模式下一页显示的应用程序的个数
-        APPLICATION_COUNT_FOR_FULL_LIST : 32
+        APPLICATION_COUNT_FOR_FULL_LIST : 32,
+        // 列表边框宽度
+        LIST_BORDER_WIDTH               : 5
     });
 
     this.defaults.currentModel = this.defaults.showType === 'f' ? 'full' : 'list';
@@ -227,6 +232,19 @@
                     .append(handler.blink = $('<b></b>').addClass('neter-dock-blink'))
                 )
                 .appendTo(handler.dock);
+
+            // 创建iframe遮罩
+            // defaults.maskFlash
+            //     && handler.dock
+            //     .append($('<iframe src="' + Neter.path() + 'blank.html"></iframe>')
+            //         .addClass('neter-dock-iframe')
+            //         .css({
+            //             width  : handler.dockStart.width(),
+            //             height : handler.dockStart.height(),
+            //             left   : handler.dockStart.css('left'),
+            //             bottom : handler.dockStart.css('bottom')
+            //         }).show()
+            //     );
             
             // 创建列表
             handler.dockList = $('<div></div>')
@@ -242,6 +260,9 @@
                 .append($('<b></b>').addClass('l'))
                 .appendTo(handler.dock);
 
+            defaults.maskFlash
+                && handler.dock.append($('<iframe src="' + Neter.path() + 'blank.html"></iframe>').addClass('neter-dock-iframe'));
+
             // 创建二级菜单容器
             handler.childList = $('<div></div>')
                 .addClass('neter-dock-list' + (defaults.showType == 'h' ? '-h' : '') +' neter-dock-child-list')
@@ -255,6 +276,9 @@
                 .append($('<b></b>').addClass('b'))
                 .append($('<b></b>').addClass('l')).hide()
                 .appendTo(handler.dock);
+            
+            defaults.maskFlash
+                && handler.dock.append($('<iframe src="' + Neter.path() + 'blank.html"></iframe>').addClass('neter-dock-iframe'));
 
             // 创建二级菜单标志
             handler.childListArrow = $('<div></div>')
@@ -279,6 +303,17 @@
                 .append($('<b></b>').addClass('b'))
                 .append($('<b></b>').addClass('l'))
                 .appendTo(handler.dock);
+
+            defaults.maskFlash
+                && handler.dock.append($('<iframe src="' + Neter.path() + 'blank.html"></iframe>')
+                    .addClass('neter-dock-iframe')
+                    .css({
+                            width  : handler.fullList.width() + defaults.LIST_BORDER_WIDTH * 3,
+                            height : handler.fullList.height() + defaults.LIST_BORDER_WIDTH * 3,
+                            left   : handler.fullList.css('left').replace('px', '') - defaults.LIST_BORDER_WIDTH,
+                            bottom : handler.fullList.css('bottom').replace('px', '') - defaults.LIST_BORDER_WIDTH
+                        })
+                );
             
             return this;
         },
@@ -316,6 +351,15 @@
                 // 插件列表的宽度
                 list.width(view.width() + defaults.SCROLLBAR_WIDTH_H * 2);
             }
+
+            defaults.maskFlash
+                && list.next()
+                    .css({
+                        width  : list.width() + defaults.LIST_BORDER_WIDTH * 3,
+                        height : list.height() + defaults.LIST_BORDER_WIDTH * 3,
+                        left   : list.css('left').replace('px', '') - defaults.LIST_BORDER_WIDTH,
+                        bottom : list.css('bottom').replace('px', '') - defaults.LIST_BORDER_WIDTH
+                    });
 
             this.updateScroll(list, view, apps);
             
@@ -376,6 +420,9 @@
                 handler.childList.hide();
                 handler.childListArrow.hide();
 
+                defaults.maskFlash
+                    && handler.childList.next().hide();
+
                 defaults.currentApp = $(this);
 
                 var item = method.getOptions(this);
@@ -414,6 +461,17 @@
                     && handler.childList.css({ bottom : bottom }).show()
                     && handler.childListArrow.css({ bottom : flagBottom }).show();
                 }
+
+                handler.subApps
+                    && defaults.maskFlash
+                    && handler.childList.next()
+                    .css({
+                        width  : handler.childList.width() + defaults.LIST_BORDER_WIDTH * 3,
+                        height : handler.childList.height() + defaults.LIST_BORDER_WIDTH * 3,
+                        left   : handler.childList.css('left').replace('px', '') - defaults.LIST_BORDER_WIDTH,
+                        bottom : handler.childList.css('bottom').replace('px', '') - defaults.LIST_BORDER_WIDTH
+                    }).show();
+
             });
 
             handler.dock
@@ -593,6 +651,8 @@
                     break;
             }
 
+            defaults.maskFlash && handler.dockList.next().show();
+			
             handler.dockStart.data('status', 'open');
             
             return this;
@@ -612,6 +672,10 @@
             handler.childList.hide();
             handler.childListArrow.hide();
 
+            defaults.maskFlash
+                && handler.dockList.next().hide()
+				&& handler.childList.next().hide()
+                && handler.fullList.next().hide();
             handler.dockStart.data('status', 'close');
 
             return this;
@@ -948,7 +1012,8 @@
      */
     show : function(type) {
         var defaults = this.defaults,
-            handler  = this.handler;
+            handler  = this.handler,
+            iframe   = handler.fullList.next();
 
         type = type || '';
 
@@ -958,10 +1023,20 @@
             handler.dockList.hide();
             handler.fullList.show();
             defaults.currentModel = 'full';
+
+            // 显示遮罩
+            defaults.maskFlash
+                && handler.dockList.next().hide()
+                && handler.fullList.next().show();
         } else {
             handler.dockList.show();
             handler.fullList.hide();
             defaults.currentModel = 'list';
+
+            // 隐藏遮罩
+            defaults.maskFlash
+                && handler.dockList.next().show()
+                && handler.fullList.next().hide();
         }
         
         return this;
