@@ -40,6 +40,12 @@ $(function() {
 			}]
 		}).render().content('我是更新后的内容...').title('重置后的标题...');
 	});
+
+	new Neter.ToolTips({
+		trigger  : $('.user'),
+		position : 'bottom',
+		content  : $('#toolTipsContent')
+	}).render();
 	
 	var box = null;
 	var searchBar = new Neter.SearchBar({

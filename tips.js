@@ -13,7 +13,7 @@
  options = {
     container : document.body,            // 信息提示框架放于哪个容器中进行显示，默认为body
     msg       : '',                       // 信息内容
-    showTime  : 2,                        // 提示信息显示时间，单位秒，默认为2秒
+    showTime  : 2000,                     // 提示信息显示时间，单位秒，默认为2000毫秒
     type      : 'success'                 // 提示框类型，success（绿色）、error（红色）、aside（灰色）、warning（棕色）
  }
  </pre>
@@ -24,7 +24,7 @@
     this.defaults = {
         container : document.body,            // 信息提示框架放于哪个容器中进行显示，默认为body
         msg       : '',                       // 信息内容
-        showTime  : 2,                        // 提示信息显示时间，单位秒，默认为2秒
+        showTime  : 2000,                     // 提示信息显示时间，单位秒，默认为2000毫秒
         type      : 'success'                 // 提示框类型，success（绿色）、error（红色）、aside（灰色）、warning（棕色）
     };
     
@@ -111,7 +111,7 @@
             tips.css({ top : 0 }).show();
         } else {
             tips.animate({ top : 0 })
-                .delay(defaults.showTime * 1000)
+                .delay(defaults.showTime)
                 .animate({ top : -tips.outerHeight() }, 'slow');
         }
         
