@@ -120,15 +120,15 @@ $(function() {
 
 	// 加载触点插件
 	var dock = new Neter.Dock({
-		showType : 'v',
-		blink : true,
-		group : true,    // 为false时subApps不被加载；当true时，showType会强制设置为v
+		showType  : 'v',
+		blink     : false,
+		group     : true,    // 为false时subApps不被加载；当true时，showType会强制设置为v
 		maskFlash : true,
-		items : [{
-			name : '通讯录',
-			icon : '../resources/images/apps/address_48.png',
-			label : 2,
-			data : '第一个测试程序',
+		items     : [{
+			name    : '通讯录',
+			icon    : '../resources/images/apps/address_48.png',
+			label   : 2,
+			data    : '第一个测试程序',
 			subApps : [{
 				name : '游戏天地',
 				icon : '../resources/images/apps/games_48.png'
@@ -273,10 +273,10 @@ var menu,
 
 function showMenu(el) {
 	menu = (menu || new Neter.DropDownMenu({
-		trigger : el,
-		mode    : 'click',
+		trigger    : el,
+		mode       : 'click',
 		showStatus : false,
-		items   : [{
+		items      : [{
 			name  : '邮箱设置',
 			email : 'auoong@163.com',
 			front : $('<div></div>').css({

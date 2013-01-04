@@ -382,11 +382,12 @@
                     start += step;
                     blink.css('background-position', '0 ' + (start * -1) + 'px');
                     if (start >= end) { start = 0; }
-                    setTimeout(fx, 250);
+                    clearTimeout(timer);
+                    timer = setTimeout(fx, 250);
                 };
 
             // 给闪烁对象添加闪烁事件
-            timer = setTimeout(fx, 250);
+            defaults.blink && (timer = setTimeout(fx, 250));
 
             handler.dock
             .on('click', '.neter-dock-list,.neter-dock-list-h', function(event) { event.stopPropagation(); })
