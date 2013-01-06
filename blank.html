@@ -33,22 +33,28 @@
 <body>
 	<div id="container"><img src="resources/images/blue/dock_bg.png" /></div>
 	<script type="text/javascript">
-		var timer = setInterval(function() {
+		var timer = setTimeout(function() {
 			if ($('body').height() > 10) {
 				//clearInterval(timer);
 				$('#container').height($('body').height() - 16);
 			}
+			clearTimeout(timer);
+			timer = setTimeout(arguments.callee, 100);
 		}, 100);
 
 		var skin = '';
-		setInterval(function() {
+		var t = setTimeout(function() {
 			if (top.Neter && skin !== top.Neter.skin()) {
 				skin = top.Neter.skin();
 
 				var o = new Neter.Skin().getSkin(skin);
 
 				$('#container img').attr('src', 'resources/images/' + o.folder + '/dock_bg.png');
+
+				o = null;
 			}
+			clearTimeout(t);
+			t = setTimeout(arguments.callee, 1000);
 		}, 1000);
 	</script>
 </body>

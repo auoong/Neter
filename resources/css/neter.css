@@ -1602,3 +1602,79 @@ input[type=text].neter-combox-input {
 .neter-checkbox-group-checkbox-icon-selected-disabled b {
     background-image: url(../images/checkbox_checked_disabled.png);
 }
+
+
+/* Neter.ToolTips（工具提示条插件） */
+.neter-tool-tips {
+    padding: 0;
+}
+.neter-tool-tips-in-arrow,
+.neter-tool-tips-out-arrow {
+    position: absolute;
+    overflow: hidden;
+    height: 15px;
+    width: 25px;
+    font-family: 'SimSun';
+    font-size: 24px;
+    color: #999;
+    display: none;
+    z-index: 99999;
+}
+
+.neter-tool-tips-in-arrow {
+    width: 25px;
+    height: 15px;
+    color: #FFF;
+    z-index: 100000;
+}
+
+.neter-tool-tips-in-arrow b,
+.neter-tool-tips-out-arrow b {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.neter-tool-tips-out-arrow-top b {
+    top: -13px;
+}
+.neter-tool-tips-in-arrow-top b {
+    height: 7px;
+    top: -16px;
+}
+
+.neter-tool-tips-in-arrow-bottom b {
+    height: 7px;
+    top: 3px;
+}
+
+.neter-tool-tips-out-arrow-left {
+    width: 15px;
+    height: 25px;
+}
+.neter-tool-tips-in-arrow-left {
+    width: 15px;
+    height: 25px;
+}
+.neter-tool-tips-out-arrow-left b {
+    left: -10px;
+}
+.neter-tool-tips-in-arrow-left b {
+    left: -13px;
+}
+
+.neter-tool-tips-out-arrow-right {
+    width: 15px;
+    height: 25px;
+}
+.neter-tool-tips-in-arrow-right {
+    width: 15px;
+    height: 23px;
+}
+.neter-tool-tips-out-arrow-right b {
+    left: 0;
+}
+.neter-tool-tips-in-arrow-right b {
+    width: 7px;
+    left: 3px;
+}

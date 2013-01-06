@@ -33,6 +33,7 @@
         height       : 200,             // 盒高度
         slideHeight  : 10,              // 显示时滑动的高度差
         paddingWidth : 16,              // paddingLeft+paddingRight的和
+        fadeIn       : true,            // 淡入效果，默认true
         content      : '',              // 盒内容，是一个DOM对象
         left         : 'center',        // 左偏移量，默认为center
         top          : 'center',        // 上偏移量，默认为center
@@ -151,8 +152,10 @@
             
             handler.box
                 && handler.box
-                    .css({ left : start.left, top : start.top, opacity : 0 })
+                    .css({ left : start.left, top : start.top, opacity : (defaults.fadeIn ? 0 : 1) })
                     .show()
+                && defaults.fadeIn
+                && handler.box
                     .animate({ left : left, top : top, opacity : 1 });
             
             return this;
@@ -277,7 +280,9 @@ console.log(new Neter.Box({ content : 'example...'})render().get());
 new Neter.Box({ content : 'example...'}).render(false).show(100, 200);
      */
     show : function(left, top) {
-        arguments.length == 0 && (left = 'center', top = 'center');
+        var defaults = this.defaults;
+
+        arguments.length == 0 && (left = defaults.left, top = defaults.top);
         this.method.show(left, top);
         
         return this;

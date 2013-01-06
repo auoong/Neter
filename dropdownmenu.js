@@ -34,7 +34,7 @@
         slideHeight : 0,                     // 显示时滑动的高度差
         showStatus  : true,                  // 是否显示选中状态，默认true
         statusType  : 'icon',                // 选中项的显示状态，默认为icon，即添加一个图标，支持：icon/bg
-        hoverTime   : 500,                   // 悬念时间，单位毫秒。当触发模式为hover时此参数起效
+        hoverTime   : 500,                   // 悬停时间，单位毫秒。当触发模式为hover时此参数起效
         items       : [],                    // 菜单项对象集合
         menuEvent   : null                   // 菜单项单击后触发的事件, this指向菜单项，menuEvent(dropDownMenu, options)
     };
