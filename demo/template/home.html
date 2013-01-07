@@ -26,7 +26,8 @@
 			items : [{
 				name : '收件箱'
 			}, {
-				name : '红旗邮件'
+				name : '红旗邮件',
+				data : '自定义数据'
 			}, {
 				name : '草稿箱'
 			}, {
@@ -45,6 +46,7 @@
 			}],
 			itemEvent : function(accordion, options) {
 				options.name == '收件箱' && navigation.active(options.name);
+				// console.log(options);
 			}
 		})
 		.render()

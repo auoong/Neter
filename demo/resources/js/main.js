@@ -90,11 +90,12 @@ $(function() {
 		itemWidth : 91,
 		itemEvent : function(navigation, options) {
 			Neter.log('执行了itemEvent事件，标签名称：%s，内容：%s', options.name, options.url || options.content, 'info');
-			
+			// console.log(options);
 			// 切换导航项时自动选中下拉菜单中的菜单项
 			navigation.optionsMenuTrigger('selected', options.name);
 		},
 		removeItemEvent : function(navigation, options) {
+			// console.log(options);
 			navigation.optionsMenuTrigger('remove', options.name);
 		},
 		items : [
@@ -300,7 +301,7 @@ function showMenu(el) {
 		],
 		menuEvent : function(dropDownMenu, options) {
 			Neter.log('菜单项名称：%s，附加数据：%s', $(this).text(), options.email || '', 'log');
-			
+			// // console.log(options);
 			if (options.name == '换肤') {
 				navigation.getIndex('换肤') == -1 && navigation.insert(-1, { name : '换肤', closeButton : true, url : 'template/skin.html' });
 				

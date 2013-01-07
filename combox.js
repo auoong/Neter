@@ -107,7 +107,7 @@
 
             // 增加微数据mask，用于比较是否修改了当前项
             handler.input.data('mask', options.name).val(options.name);
-
+            
             // 保存当前选中的项
             handler.selected = options;
         },

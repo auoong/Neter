@@ -478,9 +478,12 @@
             handler.dock
             // 应用程序单击事件
             .on('click', '.neter-dock-list-item,.neter-dock-full-list-item', function(event) {
-                var itemEvent = defaults.itemEvent;
+                var itemEvent = defaults.itemEvent,
+                    options   = method.getOptions(this, $(this).data('level') == 2 ? handler.subApps : null);
 
-                if (typeof itemEvent === 'function' && itemEvent.call(this, _this, method.getOptions(this, $(this).data('level') == 2 ? handler.subApps : null), defaults.currentModel, event) !== false) {
+                if (typeof itemEvent === 'function'
+                    && itemEvent.call(this, _this, Neter.apply({}, options, ['app4full', 'app4list']), defaults.currentModel, event) !== false) {
+                    
                     method.closeList();
                 } else {
                     method.closeList();

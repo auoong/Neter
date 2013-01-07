@@ -194,7 +194,7 @@
                 items      : defaults.optionsMenu,
                 menuEvent  : function(dropDownMenu, options, event) {
                     if (typeof defaults.optionsMenuEvent === 'function') {
-                        defaults.optionsMenuEvent.call(this, _this, options, event) !== false && dropDownMenu.hide();
+                        defaults.optionsMenuEvent.call(this, _this, Neter.apply({}, options, ['el', 'view']), event) !== false && dropDownMenu.hide();
                     } else {
                         dropDownMenu.hide();
                     }
@@ -342,7 +342,7 @@
                     
                     // 激活后执行导航条事件
                     typeof defaults.itemEvent === 'function'
-                        && defaults.itemEvent.call(item.el, _this, item, event);
+                        && defaults.itemEvent.call(item.el, _this, Neter.apply({}, item, ['el', 'view']), event);
 
                 } else {
                     item.view.hide();
@@ -515,7 +515,7 @@
                 var flag = true;
                 if (typeof defaults.removeItemEvent === 'function') {
                     // 仅当删除项事件返回false时才不删除导航项
-                    flag = defaults.removeItemEvent.call(item.el, _this, item) !== false;
+                    flag = defaults.removeItemEvent.call(item.el, _this, Neter.apply({}, item, ['el', 'view'])) !== false;
                 }
                 
                 if (!flag) { return ; }

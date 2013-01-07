@@ -33,6 +33,12 @@
     Neter.apply = function(aim, source, defaults, mask) {
         aim      = aim || {};
         source   = source || {};
+
+        if (defaults instanceof Array) {
+            mask     = defaults;
+            defaults = {};
+        }
+        
         defaults = defaults || {};
         mask     = mask || [];
         

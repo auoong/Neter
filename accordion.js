@@ -268,13 +268,13 @@
             // 菜单项事件
             .on('click', '.neter-accordion-item', function(event) {
                 (typeof defaults.itemEvent === 'function'
-                    && defaults.itemEvent.call(this, _this, method.getOptions(this), event) === false)
+                    && defaults.itemEvent.call(this, _this, Neter.apply({}, method.getOptions(this), ['el', 'subMenus']), event) === false)
                 || method.unselected().selected(this);
             })
             // 菜单组名事件
             .on('click', '.neter-accordion-item-group', function(event) {
                 (typeof defaults.itemEvent === 'function'
-                    && defaults.itemEvent.call(this, _this, method.getOptions(this), event) === false)
+                    && defaults.itemEvent.call(this, _this, Neter.apply({}, method.getOptions(this), ['el', 'subMenus']), event) === false)
                 || method.toggle(this);
             });
             
