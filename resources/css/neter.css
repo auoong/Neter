@@ -1678,3 +1678,15 @@ input[type=text].neter-combox-input {
     width: 7px;
     left: 3px;
 }
+
+/* Neter.ColorPicker（颜色拾取器插件）*/
+.neter-color-picker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    background: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #000;
+    z-index: 999999;
+}

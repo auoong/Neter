@@ -24,9 +24,16 @@
 <script type="text/javascript" src="../../dropdownmenu.js"></script>
 <script type="text/javascript" src="../../button.js"></script>
 <script type="text/javascript" src="../../combox.js"></script>
+<script type="text/javascript" src="../../farbtastic.js"></script>
+<script type="text/javascript" src="../../colorpicker.js"></script>
 </head>
 
 <body>
+<p>
+    设置背景色<input type="text" id="setBgColor" />
+    <input type="button" id="saveBtn" value="更新" />
+</p>
+    
     <ul id="container">
         <li>普通按钮</li>
         <li>禁用状态按钮</li>
@@ -46,6 +53,16 @@
     var li = $('#container li');
 
     ~function() {
+
+        new Neter.ColorPicker({
+            acceptor     : $('#setBgColor'),
+            defaultColor : '#FFF'
+        }).render();
+
+        $('#saveBtn').on('click', function() {
+            $('body').css('background-color', $('#setBgColor').val());
+        });
+
         new Neter.Button({
             container  : li.get(0),
             name       : '&lt;&lt;Back',
