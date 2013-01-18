@@ -1,0 +1,122 @@
+/*global #{*/
+    /* 公共样式 */
+    /* 主体区域 */
+    .global-body, body {
+        font-size: @global-body-font-size;
+        color: @global-body-color;
+        background-color: @global-body-background-color;
+    }
+
+    /* 表格行间距 */
+    table.global-table th, table.global-table td {
+        padding-top: @global-table-line-spacing;
+        padding-bottom: @global-table-line-spacing;
+        /* line-spacing: @global-table-line-spacing; */
+    }
+
+    /* 头部区域 */
+    .global-header {
+        font-size: @global-header-font-size;
+        color: @global-header-color;
+        background-color: @global-header-background-color;
+    }
+    /* 左侧区域 */
+    .global-left-side {
+        font-size: @global-left-side-font-size;
+        color: @global-left-side-color;
+        background-color: @global-left-side-background-color;
+    }
+    /* 标题栏 */
+    .global-title-bar {
+        font-size: @global-title-bar-font-size;
+        color: @global-title-bar-color;
+        background-color: @global-title-bar-background-color;
+    }
+/*}#*/
+/*neter-accordion #{*/
+    /* Neter.Accordion 插件 */
+    /* 未选中状态 */
+    .neter-accordion-item {
+        font-size: @neter-accordion-item-font-size;
+        color: @neter-accordion-item-color;
+    }
+    /* 鼠标悬停 */
+    .neter-accordion-item-hover {
+        font-size: @neter-accordion-item-hover-font-size;
+        color: @neter-accordion-item-hover-color;
+        background-color: @neter-accordion-item-hover-background-color;
+    }
+    /* 选中 */
+    .neter-accordion-item-selected {
+        font-size: @neter-accordion-item-selected-font-size;
+        color: @neter-accordion-item-selected-color;
+        background-color: @neter-accordion-item-selected-background-color;
+    }
+/*}#*/
+/*neter-navigation #{*/
+    /* Neter.Navigation插件 */
+    .neter-navigation-item {
+        color: @neter-navigation-item-color;
+        font-size: @neter-navigation-item-font-size;
+    }
+    .neter-navigation-item-hover {
+        background: @neter-navigation-item-hover-background-end-color;
+        background: -webkit-gradient(linear, left top, left bottom, from(@neter-navigation-item-hover-background-start-color), to(@neter-navigation-item-hover-background-end-color));
+        background: -moz-linear-gradient(center top, @neter-navigation-item-hover-background-start-color, @neter-navigation-item-hover-background-end-color) repeat;
+        background: -o-linear-gradient(top, @neter-navigation-item-hover-background-start-color,@neter-navigation-item-hover-background-end-color);
+        background: -ms-linear-gradient(top, @neter-navigation-item-hover-background-start-color,@neter-navigation-item-hover-background-end-color);
+        background: linear-gradient(to bottom, @neter-navigation-item-hover-background-start-color,@neter-navigation-item-hover-background-end-color);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@neter-navigation-item-hover-background-start-color', endColorstr='@neter-navigation-item-hover-background-end-color');
+        /* background-start-color: @neter-navigation-item-hover-background-start-color; */
+        /* background-end-color: @neter-navigation-item-hover-background-end-color; */
+        border-color: @neter-navigation-item-hover-border-color;
+        color: @neter-navigation-item-hover-color;
+        font-size: @neter-navigation-item-hover-font-size;
+    }
+    .neter-navigation-item-selected {
+        background: @neter-navigation-item-selected-background-end-color;
+        background: -webkit-gradient(linear, left top, left bottom, from(@neter-navigation-item-selected-background-start-color), to(@neter-navigation-item-selected-background-end-color));
+        background: -moz-linear-gradient(center top, @neter-navigation-item-selected-background-start-color, @neter-navigation-item-selected-background-end-color) repeat;
+        background: -o-linear-gradient(top, @neter-navigation-item-selected-background-start-color,@neter-navigation-item-selected-background-end-color);
+        background: -ms-linear-gradient(top, @neter-navigation-item-selected-background-start-color,@neter-navigation-item-selected-background-end-color);
+        background: linear-gradient(to bottom, @neter-navigation-item-selected-background-start-color,@neter-navigation-item-selected-background-end-color);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@neter-navigation-item-selected-background-start-color', endColorstr='@neter-navigation-item-selected-background-end-color');
+        /* background-start-color: @neter-navigation-item-selected-background-start-color; */
+        /* background-end-color: @neter-navigation-item-selected-background-end-color; */
+        border-color: @neter-navigation-item-selected-border-color;
+        color: @neter-navigation-item-selected-color;
+        font-size: @neter-navigation-item-selected-font-size;
+    }
+    .neter-navigation-separator {
+        background: @neter-navigation-separator-background;
+    }
+    .neter-navigation-item-close-button {
+        color: @neter-navigation-item-close-button-color;
+    }
+    .neter-navigation-item-close-button-hover {
+        background: @neter-navigation-item-close-button-hover-background-end-color;
+        background: -webkit-gradient(linear, left top, left bottom, from(@neter-navigation-item-close-button-hover-background-start-color), to(@neter-navigation-item-close-button-hover-background-end-color));
+        background: -moz-linear-gradient(center top, @neter-navigation-item-close-button-hover-background-start-color, @neter-navigation-item-close-button-hover-background-end-color) repeat;
+        background: -o-linear-gradient(top, @neter-navigation-item-close-button-hover-background-start-color,@neter-navigation-item-close-button-hover-background-end-color);
+        background: -ms-linear-gradient(top, @neter-navigation-item-close-button-hover-background-start-color,@neter-navigation-item-close-button-hover-background-end-color);
+        background: linear-gradient(to bottom, @neter-navigation-item-close-button-hover-background-start-color,@neter-navigation-item-close-button-hover-background-end-color);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='@neter-navigation-item-close-button-hover-background-start-color', endColorstr='@neter-navigation-item-close-button-hover-background-end-color');
+        /* background-start-color: @neter-navigation-item-close-button-hover-background-start-color; */
+        /* background-end-color: @neter-navigation-item-close-button-hover-background-end-color; */
+        border-color: @neter-navigation-item-close-button-hover-border-color;
+        color: @neter-navigation-item-close-button-hover-color;
+    }
+/*}#*/
+/*neter-dock #{*/
+    /* Neter.Dock插件 */
+    .neter-dock-start-button {
+        background: @neter-dock-start-button-background;
+    }
+    .neter-dock-start-button-expand {
+        background: @neter-dock-start-button-expand-background;
+    }
+    /* 列表背景与展开后的触点背景一致 */
+    .neter-dock-list-fix {
+        background: @neter-dock-start-button-expand-background;
+    }
+/*}#*/

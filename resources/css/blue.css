@@ -11,9 +11,9 @@ body {
 }
 
 /* 左侧下拉菜单相关样式 */
-.home .navigation {
+.navigation {
 	/* 背景图片（颜色） */
-	background: #F5F5F5 url(../images/blue/bottom_left.jpg) no-repeat right bottom !important;
+	background: #F5F5F5 url(../images/blue/bottom_left.jpg) no-repeat right bottom;
 
 	/* 菜单与内容的 */
 	border-right: 1px solid rgba(19,91,165,.3) !important;
@@ -24,7 +24,8 @@ body {
 /* Neter.Navigation插件样式 */
 
 /* 导航项 */
-.neter-navigation-item, .neter-navigation-item-options-menu-button {
+.neter-navigation-item,
+.neter-navigation-item-options-menu-button {
 	/* 非Firefox浏览器使用的背景样式 */
 	background: url(../images/blue/bgx.png) repeat-x 0 0;
 	background-position: 0 -112px;
@@ -41,8 +42,6 @@ body {
 }
 
 /* 鼠标悬停时的导航项 */
-.neter-navigation-item:hover,
-.neter-navigation-item-options-menu-button:hover,
 .neter-navigation-item-hover {
 	background-position: 0 -160px;
 	background: -moz-linear-gradient(center top, #FEFFFF, #C8DCF1) repeat;
@@ -50,7 +49,8 @@ body {
 }
 
 /* 鼠标按下时的导航项 */
-.neter-navigation-item:active, .neter-navigation-item-options-menu-button:active, .neter-navigation-item-active {
+.neter-navigation-item-options-menu-button:active,
+.neter-navigation-item-active {
 	background-position: 0 -208px;
 	background: #A0B0C1;
 	border-color: #808D9B;
@@ -60,7 +60,7 @@ body {
 /* 当前选中时的导航项 */
 .neter-navigation-item-selected {
 	background-position: 0 -272px;
-	background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat 0 0 !important;
+	background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat 0 0;
 	border-color: #135AA4;
 }
 
@@ -70,15 +70,13 @@ body {
 }
 
 /* 鼠标悬停在关闭按钮时的样式 */
-.neter-navigation-item-close-button:hover {
-	border: 1px #A1ACB8 solid !important;
+.neter-navigation-item-close-button-hover {
+	border: 1px #A1ACB8 solid;
 	color: #4E5257;
 }
 
 /* 选中项的关闭按钮样式 */
-.neter-navigation-item-selected .neter-navigation-item-close-button:hover {
-	background: #cbdef2;
-	background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat 0 0 !important;
+.neter-navigation-item-close-button-hover {
 	color: #FFF;
 }
 
@@ -92,12 +90,12 @@ body {
 /* Neter.Accordion插件样式 */
 
 /* 鼠标悬停时的菜单样式 */
-.neter-accordion-item:hover {
-	background: rgba(19,91,165, .5);
+.neter-accordion-item-hover {
+	background: #72abe6;
 }
 /* 当前选中的菜单样式 */
 .neter-accordion-item-selected {
-	background: rgba(19,91,165,1) !important;
+	background: #135BA5;
 	color: #FFF;
 	font-weight: bold;
 }
@@ -128,7 +126,7 @@ body {
 /* 显示模式为横向时的开始按钮触发 */
 .neter-dock-start-button-open-h {
 	background: url(../images/blue/global.png) no-repeat -2px -130px\9;
-	background: #1C3352 !important;
+	background: #1C3352;
 }
 /* 开始按钮上的方块 */
 .neter-dock-start-button .lt,

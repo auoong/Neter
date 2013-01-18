@@ -5,7 +5,7 @@
  */
 var navigation = null;
 $(function() {
-	Neter.path('../');
+	Neter.path('../').autoLoadSkin();
 	
 	$(window).resize(function() {
 		var height = $('body').height() - $('#header').height();
@@ -13,12 +13,13 @@ $(function() {
 		$('#view').css({
 			height : $('body').height() - $('#header').height(),
 			width  : '100%',
-			top    : $('#header').height()
+			top    : 88
 		});
 	}).trigger('resize');
 	
 	// 加载皮肤
-	new Neter.Skin().applying();
+	var s = new Neter.Skin();
+
 	
 	var win = null;
 	$('.user').click(function() {
@@ -88,19 +89,13 @@ $(function() {
 		container : $('#navigationContainer'),
 		view      : $('#view'),
 		itemWidth : 91,
-		itemEvent : function(navigation, options) {
-			Neter.log('执行了itemEvent事件，标签名称：%s，内容：%s', options.name, options.url || options.content, 'info');
-			// console.log(options);
-			// 切换导航项时自动选中下拉菜单中的菜单项
-			navigation.optionsMenuTrigger('selected', options.name);
-		},
 		removeItemEvent : function(navigation, options) {
 			// console.log(options);
-			navigation.optionsMenuTrigger('remove', options.name);
+			//navigation.optionsMenuTrigger('remove', options.name);
 		},
 		items : [
-			{ name : '首页', url : 'template/home.html' },
-			{ name : '通讯录', url : 'template/contact.html', closeButton : true },
+			{ name : '首页', url : 'template/home.html', reload : true },
+			{ name : '通讯录', url : 'template/blank.html', closeButton : true },
 			{ name : '邮箱应用设置', url  : 'template/app.html', closeButton : true },
 			{ name : '收件箱', url : 'template/inbox.html', closeButton : true, reload : false, removedActiveItem : '首页' }
 		],
@@ -305,7 +300,7 @@ function showMenu(el) {
 			if (options.name == '换肤') {
 				navigation.getIndex('换肤') == -1 && navigation.insert(-1, { name : '换肤', closeButton : true, url : 'template/skin.html' });
 				
-				//navigation.active('换肤').optionsMenuTrigger('insert', -1, { name : '换肤', selected : true });
+				navigation.active('换肤');
 			}
 			dropDownMenu.hide();
 		}
@@ -317,4 +312,26 @@ function showMenu(el) {
 
 function hideMenu() {
 	menu && menu.hide();
+}
+
+// 以下三个函数用于制作皮肤
+// 
+// 
+// 
+function updateCss(css) {
+	$('<style></style>').append(css).appendTo(document.body);
+}
+
+function loadThemes(cssFile) {
+	var skin = $('link#skin');
+
+	cssFile = Neter.path() + 'themes/' + (cssFile || 'templates.css');
+
+	skin.length
+		? skin.attr('href', cssFile)
+		: $('<link id="skin" rel="stylesheet" type="text/css" />').appendTo($('head').get(0)).attr('href', cssFile);
+}
+
+function stopAutoLoadThemes() {
+	Neter.stopAutoLoadSkin();
 }

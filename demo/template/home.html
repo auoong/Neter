@@ -1,5 +1,5 @@
 <section class="home">
-	<div class="navigation">
+	<div class="navigation global-left-side">
 		<a href="###" class="control-button"><b></b></a>
 		<div class="contact-buttons">
 			<ul class="buttons">
@@ -16,10 +16,73 @@
 		<div id="navTree">
 		</div>
 	</div>
-	<iframe id="home_panel" name="home_panel" frameborder="0" src="template/blank.html"></iframe>
+	<div id="home_panel" name="home_panel" class="global-body">
+		<form>
+			<h1 class="global-title-bar">示例表单</h1>
+			<div>
+				<label for="userid">姓名</label>
+				<input type="text" id="userid" name="userid" value="张三" />
+			</div>
+			<div>
+				<label>性别</label>
+				<select id="sex" name="sex"><option>男</option><option>女</option></select>
+			</div>
+			<div>
+				<label>简介</label>
+				<textarea style="font-size: 12px;">填写内容...</textarea>
+			</div>
+			<button>提交</button>
+		</form>
+		<p style="margin-left: 10px;">
+			<label>选择主题：<select id="themesList"></select></label>
+			<button id="setThemesBtn">应用主题</button>
+		</p>
+		<table class="global-table" border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse; margin-left: 10px;">
+			<tr>
+				<th width="80">姓名</th>
+				<th width="80">性别</th>
+				<th>简介</th>
+			</tr>
+			<tr>
+				<td>张三</td>
+				<td>男</td>
+				<td>没有什么简介的</td>
+			</tr>
+			<tr>
+				<td>李四</td>
+				<td>男</td>
+				<td>简介内容</td>
+			</tr>
+			<tr>
+				<td>王五</td>
+				<td>男</td>
+				<td>这个家伙很懒，什么东西都没留下</td>
+			</tr>
+			<tr>
+				<td>赵六</td>
+				<td>男</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
 </section>
 <script type="text/javascript">
 	(function() {
+		// 加载主题
+		var tl = $('#themesList');
+		var skin = new Neter.Skin();
+
+		$.getJSON('../themes/manifest.json', function(data) {
+			for (var p in data) {
+				$('<option value=' + p + '>' + p + '</option>').appendTo(tl);
+			}
+		});
+		$('#setThemesBtn').on('click', function() {
+			alert(tl.val());
+			skin.status() && skin.applying(tl.val());
+		});
+
+
 		var accordion = new Neter.Accordion({
 			width : 'auto',
 			container : $('#navTree'),

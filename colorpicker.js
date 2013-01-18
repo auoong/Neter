@@ -27,7 +27,7 @@
         container    : $('body'),
         acceptor     : null,
         width        : 150,
-        defaultColor : '#808080'
+        defaultColor : '#FFF'
     };
 
     Neter.apply(this.defaults, options);

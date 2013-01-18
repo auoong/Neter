@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>主题工具</title>
+    <link rel="stylesheet" href="../../resources/css/neter.css" />
+    <link rel="stylesheet" href="resources/css/index.html.css" />
+    <script type="text/javascript" src="../../jquery.js"></script>
+    <script type="text/javascript" src="../../core.js"></script>
+    <script type="text/javascript" src="../../box.js"></script>
+    <script type="text/javascript" src="../../dropdownmenu.js"></script>
+    <script type="text/javascript" src="../../button.js"></script>
+    <script type="text/javascript" src="../../combox.js"></script>
+    <script type="text/javascript" src="../../farbtastic.js"></script>
+    <script type="text/javascript" src="../../colorpicker.js"></script>
+    <script type="text/javascript" src="resources/js/parser.js"></script>
+    <script type="text/javascript" src="resources/js/index.html.js"></script>
+</head>
+<body>
+    <div id="left">
+        <ul>
+            <li>自定义</li>
+            <li class="modify">修改现有主题</li>
+        </ul>
+        <div id="themesListContainer" class="hide">
+            <span>选择要修改的主题：</span>
+        </div>
+        <div>&nbsp;</div>
+        <div class="container">
+            <div class="title">
+                <span class="icon"></span>
+                <h1>全局样式设定</h1>
+            </div>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th>区域</th>
+                        <th>背景色</th>
+                        <th>字体色</th>
+                        <th>字体大小</th>
+                        <th>行间距</th>
+                    </tr>
+                    <tr>
+                        <td>头部区域</td>
+                        <td>
+                            <input type="text" id="global-header-background-color"
+                                data-css-type="global"
+                                data-css-name="global-header" />
+                        </td>
+                        <td>
+                            <input type="text" id="global-header-color"
+                                data-css-type="global"
+                                data-css-name="global-header" />
+                        </td>
+                        <td>
+                            <select id="global-header-font-size" autocomplete='off'
+                                data-css-type="global"
+                                data-css-name="global-header">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>左侧区域</td>
+                        <td>
+                            <input type="text" id="global-left-side-background-color"
+                                data-css-type="global"
+                                data-css-name="global-left-side" />
+                        </td>
+                        <td>
+                            <input type="text" id="global-left-side-color"
+                                data-css-type="global"
+                                data-css-name="global-left-side" />
+                        </td>
+                        <td>
+                            <select id="global-left-side-font-size" autocomplete='off'
+                                data-css-type="global"
+                                data-css-name="global-left-side">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>主体区域</td>
+                        <td>
+                            <input type="text" id="global-body-background-color"
+                                data-css-type="global"
+                                data-css-name="global-body" />
+                        </td>
+                        <td>
+                            <input type="text" id="global-body-color"
+                                data-css-type="global"
+                                data-css-name="global-body" />
+                        </td>
+                        <td>
+                            <select id="global-body-font-size" autocomplete='off'
+                                data-css-type="global"
+                                data-css-name="global-body">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="global-table-line-spacing" autocomplete='off'
+                                data-css-type="global"
+                                data-css-name="global-table">
+                                <option value="12px">宽松</option>
+                                <option value="8px">适中</option>
+                                <option value="4px">紧凑</option>
+                                <option value="2px">密集</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>标题栏</td>
+                        <td>
+                            <input type="text" id="global-title-bar-background-color"
+                                data-css-type="global"
+                                data-css-name="global-title-bar" />
+                        </td>
+                        <td>
+                            <input type="text" id="global-title-bar-color"
+                                data-css-type="global"
+                                data-css-name="global-title-bar" />
+                        </td>
+                        <td>
+                            <select id="global-title-bar-font-size" autocomplete='off'
+                                data-css-type="global"
+                                data-css-name="global-title-bar">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container">
+            <div class="title">
+                <span class="icon"></span>
+                <h1>折叠菜单样式</h1>
+            </div>
+            <div class="content">
+                <table>
+                    <tr>
+                        <th></th>
+                        <th>背景色</th>
+                        <th>字体色</th>
+                        <th>字体大小</th>
+                    </tr>
+                    <tr>
+                        <td>普通状态</td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <input type="text" id="neter-accordion-item-color"
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item" />
+                        </td>
+                        <td>
+                            <select id="neter-accordion-item-font-size" autocomplete='off'
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>鼠标悬停</td>
+                        <td>
+                            <input type="text" id="neter-accordion-item-hover-background-color"
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-accordion-item-hover-color"
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-hover" />
+                        </td>
+                        <td>
+                            <select id="neter-accordion-item-hover-font-size" autocomplete='off'
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-hover">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>选中状态</td>
+                        <td>
+                            <input type="text" id="neter-accordion-item-selected-background-color"
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-selected" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-accordion-item-selected-color"
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-selected" />
+                        </td>
+                        <td>
+                            <select id="neter-accordion-item-selected-font-size" autocomplete='off'
+                                data-css-type="neter-accordion"
+                                data-css-name="neter-accordion-item-selected">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container">
+            <div class="title">
+                <span class="icon"></span>
+                <h1>导航条样式</h1>
+            </div>
+            <div class="content">
+                <fieldset>
+                    <legend>导航项</legend>
+                    <table>
+                    <tr>
+                        <th rowspan="2"></th>
+                        <th colspan="2">背景渐变色</th>
+                        <th rowspan="2">边框线色</th>
+                        <th rowspan="2">字体色</th>
+                        <th rowspan="2">字体大小</th>
+                    </tr>
+                    <tr>
+                        <th>开始色</th>
+                        <th>结束色</th>
+                    </tr>
+                    <tr>
+                        <td>普通状态</td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-background-start-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-background-end-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-border-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item" />
+                        </td>
+                        <td>
+                            <select id="neter-navigation-item-font-size" autocomplete='off'
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>鼠标悬停</td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-hover-background-start-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-hover-background-end-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-hover-border-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-hover-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-hover" />
+                        </td>
+                        <td>
+                            <select id="neter-navigation-item-hover-font-size" autocomplete='off'
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-hover">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>选中状态</td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-selected-background-start-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-selected" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-selected-background-end-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-selected" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-selected-border-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-selected" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-selected-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-selected" />
+                        </td>
+                        <td>
+                            <select id="neter-navigation-item-selected-font-size" autocomplete='off'
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-selected">
+                                <option value="16px">大字号</option>
+                                <option value="14px">中字号</option>
+                                <option value="12px" selected="selected">小字号</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>分割线</td>
+                        <td>
+                            <input type="text" id="neter-navigation-separator-background"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-separator" />
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                </fieldset>
+                
+
+                <fieldset>
+                    <legend>关闭按钮</legend>
+                    <table>
+                    <tr>
+                        <th rowspan="2"></th>
+                        <th colspan="2">背景渐变色</th>
+                        <th rowspan="2">边框线色</th>
+                        <th rowspan="2">按钮色</th>
+                        <th rowspan="2"></th>
+                    </tr>
+                    <tr>
+                        <th>开始色</th>
+                        <th>结束色</th>
+                    </tr>
+                    <tr>
+                        <td>普通状态</td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-close-button-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-close-button" />
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>鼠标悬停</td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-close-button-hover-background-start-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-close-button-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-close-button-hover-background-end-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-close-button-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-close-button-hover-border-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-close-button-hover" />
+                        </td>
+                        <td>
+                            <input type="text" id="neter-navigation-item-close-button-hover-color"
+                                data-css-type="neter-navigation"
+                                data-css-name="neter-navigation-item-close-button-hover" />
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                </table>
+                </fieldset>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="title">
+                <span class="icon"></span>
+                <h1>触点菜单样式</h1>
+            </div>
+            <div class="content">
+                <ul>
+                    <li>
+                        普通状态背景
+                        <input type="text" id="neter-dock-start-button-background"
+                            data-css-type="neter-dock"
+                            data-css-name="neter-dock-start-button" />
+                    </li>
+                    <li>
+                        展开状态背景
+                        <input type="text" id="neter-dock-start-button-expand-background"
+                            data-css-type="neter-dock"
+                            data-css-name="neter-dock-start-button-expand" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>主题名称：<input type="text" id="themesName" name="themesName" style="width:100px" /></p>
+            <p>文件名称：<input type="text" id="fileName" name="fileName" style="width:100px" /></p>
+            <button id="saveBtn">保存主题</button>
+        </div>
+    </div>
+    <div id="right">
+        <iframe id="view" name="view" src="../../demo/main.htm" frameborder="0"></iframe>
+    </div>
+</body>
+</html>

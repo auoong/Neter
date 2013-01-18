@@ -266,10 +266,19 @@
             
             handler.accordion
             // 菜单项事件
-            .on('click', '.neter-accordion-item', function(event) {
+            .on('click', '.neter-accordion-item-flag', function(event) {
                 (typeof defaults.itemEvent === 'function'
                     && defaults.itemEvent.call(this, _this, Neter.apply({}, method.getOptions(this), ['el', 'subMenus']), event) === false)
                 || method.unselected().selected(this);
+            })
+            .on('mouseenter', '.neter-accordion-item-flag', function() {
+                $(this).hasClass('neter-accordion-item-selected')
+                    || $(this).removeClass('neter-accordion-item')
+                              .addClass('neter-accordion-item-hover');
+            })
+            .on('mouseleave', '.neter-accordion-item-flag', function() {
+                $(this).removeClass('neter-accordion-item-hover').hasClass('neter-accordion-item-selected')
+                || $(this).addClass('neter-accordion-item')
             })
             // 菜单组名事件
             .on('click', '.neter-accordion-item-group', function(event) {
@@ -329,7 +338,8 @@
             
             container = options.name
                 ? $('<div></div>').addClass('neter-accordion-item-container')
-                    .append(item = $('<div></div>').addClass('neter-accordion-item')
+                    // neter-accordion-item-flag类仅为了绑定事件用
+                    .append(item = $('<div></div>').addClass('neter-accordion-item neter-accordion-item-flag')
                         .append($('<div></div>').addClass('neter-accordion-item-front').append(options.front || null))
                         .append($('<div></div>').addClass('neter-accordion-item-name').append(options.name))
                         .append($('<div></div>').addClass('neter-accordion-item-rear').append(options.rear || null)))
@@ -372,7 +382,7 @@
             
             item
                 && item.el
-                && item.el.find('.neter-accordion-item:first:not(.neter-accordion-item-group)').addClass('neter-accordion-item-selected').trigger(flag ? 'click' : 'NO EVENT')
+                && item.el.find('.neter-accordion-item-flag:first:not(.neter-accordion-item-group)').removeClass('neter-accordion-item-hover').addClass('neter-accordion-item-selected').trigger(flag ? 'click' : 'NO EVENT')
                 && (item.selected = true);
                 
             return this;
@@ -382,7 +392,7 @@
          * @ignore
          */
         unselected : function() {
-            _this.handler.accordion.find('.neter-accordion-item-selected').removeClass('neter-accordion-item-selected');
+            _this.handler.accordion.find('.neter-accordion-item-selected').removeClass('neter-accordion-item-selected').addClass('neter-accordion-item');
             
             $.each(_this.handler.menus || [], function(index, item) {
                 item.selected

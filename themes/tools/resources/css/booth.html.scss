@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+h1, iframe, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+// 线性渐变函数
+@mixin grandient($from, $to) {
+    background:-moz-linear-gradient(top, $from, $to) repeat;
+}
+
+@mixin rounded($arg...) {
+    -moz-border-radius    : $arg;
+    -webkit-border-radius : $arg;
+    border-radius         : $arg;
+}
+
+.panel {
+    list-style-type: none;
+    float: left;
+    display: block;
+    margin: 5px;
+    width: 300px;
+    overflow: hidden;
+}
+
+.title {
+    height: 24px;
+    line-height: 24px;
+    font-size: 12px;
+}
