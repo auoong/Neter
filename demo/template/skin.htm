@@ -1,0 +1,68 @@
+<div id="skinsList"></div>
+<script type="text/javascript">
+    Neter.namespace('Page.Skin');
+    
+    Page.Skin = {
+        skin      : new Neter.Skin(),
+        current   : '天空蓝',
+        loadSkins : function() {
+            this.current = this.skin.getSkin().name;
+            
+            $.each(this.skin.getSkin(true) || [], function(index, item) {
+                var visi = item.name === Neter.skin() ? 'visible' : 'hidden';
+                
+                // 创建皮肤列表容器
+                var container = $('<div></div>').addClass('page-skin').appendTo($('#skinsList'));
+                
+                // 创建皮肤内容，用来显示缩略图与皮肤名称
+                container
+                    .append($('<a></a>').addClass('page-skin-container')
+                        .append($('<b></b>').addClass('page-skin-content')
+                            .css({ 'background-position' : item.left + ' ' + item.top }))
+                        .append($('<span></span>').addClass('page-skin-title').html(item.name)));
+                
+                // 创建皮肤选中标志
+                container
+                    .append($('<div></div>').addClass('page-skin-selected-border').data('skin', item.name).css('visibility', visi)
+                        .append($('<b></b>').addClass('page-skin-selected-icon').html('z')[visi == 'hidden' ? 'hide' : 'show']()));
+            });
+            
+            return this;
+        },
+        bindEvents : function() {
+            $('#skinsList')
+            .delegate('.page-skin-container', 'click', function(event) {
+                // 重置所有的皮肤
+                $('#skinsList .page-skin-selected-border').css('visibility', 'hidden').find('.page-skin-selected-icon').hide();
+                
+                $(this).next().css({
+                    'border-color' : '#3D882D',
+                    'visibility'   : 'visible'
+                }).find('.page-skin-selected-icon').show();
+                
+                Page.Skin.selected(Page.Skin.current = $(this).next().data('skin'));
+            })
+            .delegate('.page-skin-container', 'mouseenter', function(event) {
+                if (Page.Skin.current === $(this).next().data('skin')) { return ; }
+                $(this).next().css({
+                    'border-color' : '#3366CC',
+                    'visibility'   : 'visible'
+                });
+            })
+            .delegate('.page-skin-container', 'mouseleave', function(event) {
+                if (Page.Skin.current === $(this).next().data('skin')) { return ; }
+                $(this).next().css({
+                    'visibility' : 'hidden'
+                });
+            });
+            
+            return this;
+        },
+        selected   : function(name) {
+            this.skin.applying(name || Neter.skin());
+            
+        }
+    };
+    
+    Page.Skin.loadSkins().bindEvents().selected();
+</script>

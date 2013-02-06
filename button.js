@@ -64,7 +64,7 @@
             var defaults = _this.defaults;
 
             typeof defaults.clickEvent === 'function'
-                    && defaults.clickEvent.call(this, _this, { name : options.name}, event);
+                    && defaults.clickEvent.call(this, _this, Neter.apply({}, options, ['el', 'subMenus', 'selected']), event);
 
             defaults.modify && _this.handler.label.html(options.name);
 

@@ -11,7 +11,7 @@ body {
 	background: url(../images/coffee/top_right.jpg) no-repeat right top;
 }
 
-.home .navigation {
+.navigation {
 	border-right: 1px #B9A89B solid;
 	border-bottom: 1px #B9A89B solid;
 	background: #E8E2D2 url(../images/coffee/bottom_left.jpg) no-repeat right bottom;

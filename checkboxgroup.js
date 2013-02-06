@@ -58,14 +58,14 @@
     this.method = {
         /**
          * 根据名称获取配置信息
-         * @param {String} name 按钮名称
+         * @param {String} item 按钮名称
          * @return {Object} 按钮配置信息
          */
-        getOptions : function(name) {
+        getOptions : function(item) {
             var checkboxes = _this.handler.checkboxes;
-
-            for (var i = 0, len = checkboxes.lenght; i < len; ++i) {
-                if (checkboxes[i].name === name) {
+            
+            for (var i = 0, len = checkboxes.length; i < len; ++i) {
+                if (checkboxes[i].name === item || checkboxes[i].checkbox.get(0) === item) {
                     return checkboxes[i];
                 }
             }
@@ -82,7 +82,7 @@
                 // 创建按钮图标
                 icon      = $('<span><b></b></span>').addClass(defaults.ICON_NORMAL_CLASS).appendTo(checkbox),
                 // 创建按钮标签
-                label     = $('<span></span>').addClass('neter-checkbox-group-checkbox-label').append(options.label).appendTo(checkbox);
+                label     = $('<span></span>').addClass('neter-checkbox-group-checkbox-label').append(options.tag).appendTo(checkbox);
 
             var childrens = container.find('span.neter-checkbox-group-checkbox');
 
@@ -111,20 +111,21 @@
         },
         /** @ignore */
         bindEvents : function(item, options) {
-            var defaults = _this.defaults;
+            var defaults = _this.defaults,
+                method   = this;
 
             if (!item) { return this; }
 
-            item.on('click', { options : options }, function(event) {
-                var options = event.data.options;
-
-                if (typeof defaults.selectedEvent === 'function' && defaults.selectedEvent.call(this, _this, options, event) === false) {
+            item.on('click', { name : options.name }, function(event) {
+                var options = method.getOptions(event.data.name);
+                
+                if (typeof defaults.selectedEvent === 'function' && defaults.selectedEvent.call(this, _this, Neter.apply({}, options, ['checkbox', 'icon', 'label']), event) === false) {
                     return ;
                 }
 
                 if (options.disabled) { return ; }
-
-                _this.method[options.selected ? 'unselected' : 'selected']($(this).children().first());
+                
+                _this.method[options.selected ? 'unselected' : 'selected']($(this).get(0));
             });
 
             return this;
@@ -154,15 +155,19 @@
         selected : function(item/*[,[item[,...]]]*/) {
             var defaults = _this.defaults,
                 handler  = _this.handler,
+                method   = this,
                 cls      = defaults.ICON_SELECTED_CLASS,
                 items    = $.map([].slice.call(arguments), function(item) {
-                    return item.get(0);
+                    var o = method.getOptions(item);
+                    
+                    return o ? o.icon.get(0) : null;
                 });
 
+            
             if (arguments.length) {
                 $.each(handler.checkboxes, function(index, item) {
                     if (~$.inArray(item.icon.get(0), items)) {
-                        item.selected = item.icon.addClass(cls);
+                        item.selected = !!item.icon.addClass(cls);
                     }
                 });
             } else {
@@ -181,11 +186,14 @@
         unselected : function(item/*[,[item[,...]]]*/) {
             var defaults = _this.defaults,
                 handler  = _this.handler,
+                method   = this,
                 cls      = defaults.ICON_SELECTED_CLASS,
                 items    = $.map([].slice.call(arguments), function(item) {
-                    return item.get(0);
+                    var o = method.getOptions(item);
+                    
+                    return o ? o.icon.get(0) : null;
                 });
-
+            
             if (arguments.length) {
                 $.each(handler.checkboxes, function(index, item) {
                     if (~$.inArray(item.icon.get(0), items)) {
@@ -267,7 +275,7 @@
 
         if (!item) { return this; }
 
-        item.label !== options.label && handler.label.empty().append(options.label);
+        item.tag !== options.tag && handler.label.empty().append(options.tag);
         options.selected && this.selected(name);
         options.disabled && this.disabled(name, true);
 
@@ -353,7 +361,7 @@
 
         if (!arguments.length) {
             $.each(this.handler.checkboxes, function(index, value) {
-                value.selected && current.push(value);
+                value.selected && current.push(Neter.apply({}, value, ['checkbox', 'icon', 'label', 'selected']));
             });
 
             return current;
@@ -361,7 +369,7 @@
 
         arguments.length === 1 && name === true
             ? method.selected()
-            : method.selected.apply(arguments);
+            : method.selected.apply(method, arguments);
 
         return this;
     },
@@ -378,7 +386,7 @@
 
         if (!arguments.length) {
             $.each(this.handler.checkboxes, function(index, value) {
-                !value.selected && current.push(value);
+                !value.selected && current.push(Neter.apply({}, value, ['checkbox', 'icon', 'label', 'selected']));
             });
 
             return current;
@@ -386,7 +394,7 @@
 
         arguments.length === 1 && name === true
             ? method.unselected()
-            : method.unselected.apply(arguments);
+            : method.unselected.apply(method, arguments);
 
 
         return this;

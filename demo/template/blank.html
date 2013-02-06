@@ -1,32 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
-<link rel="stylesheet" type="text/css" href="../../resources/css/neter.css" />
 <style type="text/css">
-    html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        background: rgba(204,204,204,.1);
-    }
     #container {
         list-style: none;
     }
     #container li {
         margin: 5px;
     }
+    .global-panel {
+        border: 1px #CCC solid;
+        border-radius: 3px;
+    }
+    .global-title {
+        background-color: #999;
+        color: #FFF;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 5px;
+    }
 </style>
-<script type="text/javascript" src="../../jquery.js"></script>
-<script type="text/javascript" src="../../core.js"></script>
-<script type="text/javascript" src="../../box.js"></script>
-<script type="text/javascript" src="../../dropdownmenu.js"></script>
-<script type="text/javascript" src="../../button.js"></script>
-<script type="text/javascript" src="../../combox.js"></script>
-</head>
 
-<body>
+<div class="global-panel">
+    
+    <p style="display:none">
+        设置背景色<input type="text" id="setBgColor" />
+        <input type="button" id="saveBtn" value="更新" />
+    </p>
+    
     <ul id="container">
         <li>普通按钮</li>
         <li>禁用状态按钮</li>
@@ -36,16 +34,15 @@
         <li>普通下拉列表</li>
         <li>可输入下拉列表</li>
     </ul>
+</div>
 <script type="text/javascript">
-    $('body').click(function() {
-        parent.$('body').trigger('click');
-    });
-
-    Neter.path('../../');
-
     var li = $('#container li');
 
     ~function() {
+        $('#saveBtn').on('click', function() {
+            $('body').css('background-color', $('#setBgColor').val());
+        });
+
         new Neter.Button({
             container  : li.get(0),
             name       : '&lt;&lt;Back',
@@ -139,5 +136,3 @@
         }).render().insert(-1, { name : '有道笔记', type : 'read'}, true).show();
     }()
 </script>
-</body>
-</html>

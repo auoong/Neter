@@ -123,7 +123,7 @@
 	height: 100%;
 	position: relative;
 }
-.home .navigation {
+.navigation {
 	width: 200px;
 	height: 100%;
 	border-right: 1px #BDBDBD solid;
@@ -135,6 +135,24 @@
 	left: 200px;
 	top: 0;
 	height: 100%;
+}
+#home_panel form {
+	position: relative;
+	margin: 10px;
+}
+#home_panel div {
+	padding: 4px;
+}
+#home_panel h1 {
+	margin: 0;
+	padding: 5px;
+}
+#home_panel label {
+	display: inline-block;
+	width: 100px;
+}
+#home_panel button {
+	margin-left: 104px;
 }
 #navTree {
 	position: relative;

@@ -39,26 +39,26 @@
             container     : $('#lineHeightSettingContainer'),
             showType      : 'v',
             selectedEvent : function(radioGroup, options, event) {
-                //console.log(options);
+                // console.log('单击的单选按钮：%o', options);
             },
             radios : [{
-                label : '宽松',
-                name  : '宽松',
-                value : 'ks'
+                tag      : '宽松',
+                name     : '宽松',
+                value    : 'ks'
             }, {
-                label    : '适中',
+                tag      : '适中',
                 name     : '适中',
                 value    : 'sz',
                 selected : true,
                 disabled : true
             }, {
-                label : '紧凑',
-                name  : '紧凑',
-                value : 'jc'
+                tag      : '紧凑',
+                name     : '紧凑',
+                value    : 'jc'
             }, {
-                label : '密集',
-                name  : '密集',
-                value : 'mj'
+                tag      : '密集',
+                name     : '密集',
+                value    : 'mj'
             }]
         }).render().disabled(false);
 
@@ -74,28 +74,28 @@
             container     : $('#mailSettings'),
             showType      : 'v',
             selectedEvent : function(checkboxGroup, options, event) {
-                //console.log(options);
+                // console.log('当前项：%o', options);
             },
             checkboxes : [{
-                label : '紧急',
+                tag   : '紧急',
                 name  : '紧急',
                 value : 'jj'
             }, {
-                label    : '已读回执',
+                tag      : '已读回执',
                 name     : '已读回执',
                 value    : 'ydhz',
                 selected : true,
                 disabled : true
             }, {
-                label : '纯文本',
+                tag   : '纯文本',
                 name  : '纯文本',
                 value : 'cwb'
             }, {
-                label : '邮件加密',
+                tag   : '邮件加密',
                 name  : '邮件加密',
                 value : 'yjjm'
             }]
-        }).render().selected('紧急', '纯文本');
+        }).render().selected('紧急', '邮件加密');
 
         new Neter.Button({
             container  : $('#cButtonContainer'),

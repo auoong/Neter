@@ -22,6 +22,7 @@
     // cache参数仅对url有效。默认开启缓存
     // [{
     //      name              : '导航项名称',
+    //      title             : '鼠标悬停时的提示信息',
     //      content           : '对应的内容',
     //      url               : '对应的url',
     //      cache             : true,
@@ -66,6 +67,7 @@
         // cache参数仅对url有效。默认开启缓存
         // [{
         //      name              : '导航项名称',
+        //      title             : '鼠标悬停时的提示信息',
         //      content           : '对应的内容',
         //      url               : '对应的url',
         //      cache             : true,
@@ -91,7 +93,17 @@
         //  }]
         optionsMenu      : [],
         // 导航选项菜单项事件
-        optionsMenuEvent : null
+        optionsMenuEvent : null,
+        // 导航项样式列表
+        itemCssList : ['neter-navigation-item',
+            'neter-navigation-item-hover',
+            'neter-navigation-item-active',
+            'neter-navigation-item-selected'].join(' '),
+        // 关闭按钮样式列表
+        closeButtonCssList : ['neter-navigation-item-close-button',
+            'neter-navigation-item-close-button-hover',
+            'neter-navigation-item-close-button-active',
+            'neter-navigation-item-close-button-selected'].join(' ')
     };
     
     Neter.apply(this.defaults, options);
@@ -184,7 +196,7 @@
             // 创建选项菜单按钮
             handler.dropDownMenu = new Neter.DropDownMenu({
                 alignment  : 'right',
-                trigger    : $('<li></li>').addClass('neter-navigation-item-options-menu-button')
+                trigger    : $('<li></li>').addClass('neter-navigation-item neter-navigation-item-options-menu-button')
                             [defaults.optionsMenu && defaults.optionsMenu.length ? 'show' : 'hide']()
                             .append($('<b></b>'))
                             .click(function(event) { event.stopPropagation(); })
@@ -194,7 +206,7 @@
                 items      : defaults.optionsMenu,
                 menuEvent  : function(dropDownMenu, options, event) {
                     if (typeof defaults.optionsMenuEvent === 'function') {
-                        defaults.optionsMenuEvent.call(this, _this, options, event) !== false && dropDownMenu.hide();
+                        defaults.optionsMenuEvent.call(this, _this, Neter.apply({}, options, ['el', 'view']), event) !== false && dropDownMenu.hide();
                     } else {
                         dropDownMenu.hide();
                     }
@@ -221,7 +233,7 @@
             width = width > defaults.itemWidth ? defaults.itemWidth : width;
             
             // 设置导航项宽度
-            handler.ul.children('.neter-navigation-item').width(width).css({ marginLeft : -1 }).first().css({ marginLeft : 0 });
+            handler.ul.children('.neter-navigation-item-flag').width(width).css({ marginLeft : -1 }).first().css({ marginLeft : 0 });
             
             return this;
         },
@@ -236,20 +248,48 @@
             
             handler.ul
             // 导航项单击事件
-            .on('click', 'li.neter-navigation-item', function(event) {
+            .on('click', 'li.neter-navigation-item-flag', function(event) {
                 var index = $(this).index(),
                     options = method.getOptions(index) || {};
                 
                 method.active(index, options.reload, event);
+                
+                options = null;
+            })
+            .on('mouseenter', '.neter-navigation-item-flag,.neter-navigation-item-options-menu-button', function() {
+                $(this).hasClass('neter-navigation-item-selected')
+                || $(this).removeClass('neter-navigation-item')
+                          .addClass('neter-navigation-item-hover');
+            })
+            .on('mouseleave', '.neter-navigation-item-flag,.neter-navigation-item-options-menu-button', function() {
+                $(this).removeClass('neter-navigation-item-hover')
+                       .hasClass('neter-navigation-item-selected')
+                || $(this).addClass('neter-navigation-item')
             })
             // 导航项关闭按钮事件
-            .on('click', 'a.neter-navigation-item-close-button', function(event) {
-                var parent = $(this).parents('.neter-navigation-item'),
+            .on('click', '.neter-navigation-item-close-button-flag', function(event) {
+                var parent = $(this).parents('.neter-navigation-item-flag'),
                     index  = parent.index();
                 
                 _this.remove(index);
                 
                 event.stopPropagation();
+
+                parent = null;
+            })
+            .on('mouseenter', '.neter-navigation-item-close-button-flag', function() {
+                $(this).removeClass('neter-navigation-item-close-button')
+                       .addClass('neter-navigation-item-close-button-hover');
+            })
+            .on('mouseleave', '.neter-navigation-item-close-button-flag', function() {
+                var self = $(this);
+                self.removeClass('neter-navigation-item-close-button-hover');
+
+                if (self.parent().parent().hasClass('neter-navigation-item-selected')) {
+                    self.addClass('neter-navigation-item-selected-close-button');
+                } else {
+                    self.addClass('neter-navigation-item-close-button');
+                }
             });
             
             // 给body绑定关闭下拉选项菜单事件
@@ -266,6 +306,7 @@
          * @param {Object} options 导航项配置信息
             options = {
                 name        : '导航项名称',
+                title       : '鼠标悬停时的提示信息',
                 content     : '对应的内容',
                 url         : '对应的url',
                 cache       : true,
@@ -286,7 +327,7 @@
             var defaults = _this.defaults,
                 handler  = _this.handler,
                 children = null,
-                item     = $('<li></li>').addClass('neter-navigation-item'),
+                item     = $('<li></li>').addClass('neter-navigation-item neter-navigation-item-flag'),
                 view     = $('<div></div>').addClass('neter-navigation-view').appendTo(handler.view);
             
             // 修正index=-1时的插入位置
@@ -295,7 +336,7 @@
             // 创建导航项
             // 包含三个区域，前置区域，用于用户自定义图标或做其他用；名称，即导航项名称；后置区域，默认用来显示关闭按钮，也可用户自定义。
             item.append($('<span></span>').addClass('neter-navigation-item-front').append(options.front || null))
-                .append($('<span></span>').addClass('neter-navigation-item-name').attr('title', options.name).html(options.name))
+                .append($('<span></span>').addClass('neter-navigation-item-name').attr('title', options.title || options.name.replace(/<.*$/, '')).html(options.name))
                 .append($('<span></span>').addClass('neter-navigation-item-rear'));
             
             children = item.children();
@@ -305,7 +346,7 @@
             options.rear
                 ? children.last().empty().append(options.rear).show()
                 : children.last()
-                    .append($('<a href="###"></a>').addClass('neter-navigation-item-close-button')
+                    .append($('<a href="###"></a>').addClass('neter-navigation-item-close-button neter-navigation-item-close-button-flag')
                         .append($('<b>x</b>')));
             
             options.closeButton && children.last().show();
@@ -317,6 +358,8 @@
             
             // 检测是否需要激活当前项
             options.active && this.active(index, true);
+
+            defaults = handler = children = item = view = null;
             
             return this;
         },
@@ -336,20 +379,29 @@
                 if (item === index || (typeof index === 'number' ? index == i : index == item.name)) {
                     method.loadData(item.view, item.content, item.url, item.cache, argLen >= 2 ? reload : item.reload);
                     
-                    item.view.fadeIn();
-                    item.el.addClass('neter-navigation-item-selected');
+                    item.view.show();
+                    item.el.removeClass(defaults.itemCssList)
+                           .addClass('neter-navigation-item-selected')
+                           .find('.neter-navigation-item-close-button-flag')
+                                .removeClass('neter-navigation-item-close-button neter-navigation-item-close-button-hover')
+                                .addClass('neter-navigation-item-selected-close-button');
                     item.active = true;
                     
                     // 激活后执行导航条事件
                     typeof defaults.itemEvent === 'function'
-                        && defaults.itemEvent.call(item.el, _this, item, event);
-
+                        && defaults.itemEvent.call(item.el, _this, Neter.apply({}, item, ['el', 'view']), event);
                 } else {
                     item.view.hide();
-                    item.el.removeClass('neter-navigation-item-selected');
+                    item.el.removeClass('neter-navigation-item-selected')
+                           .addClass('neter-navigation-item')
+                           .find('.neter-navigation-item-selected-close-button')
+                                .removeClass('neter-navigation-item-selected-close-button')
+                                .addClass('neter-navigation-item-close-button');
                     item.active = false;
                 }
             });
+
+            defaults = handler = method = null;
             
             return this;
         },
@@ -363,7 +415,7 @@
          * @param {Boolean} reload 是否重新渲染视图，默认为true
          */
         loadData : function(view, content, url, cache, reload) {
-            if (view.html() != '' && reload === false) { return this; }
+            if (view.html() != '' && !reload) { return this; }
 
             if (url) {
                 var params = cache ? { v : Math.random() } : {};
@@ -418,6 +470,7 @@
      <pre>
         options = {
             name              : '导航项名称',
+            title             : '鼠标悬停时的提示信息',
             content           : '对应的内容',
             url               : '对应的url',
             cache             : true,
@@ -446,6 +499,7 @@
      <pre>
         options = {
             name              : '导航项名称',
+            title             : '鼠标悬停时的提示信息',
             content           : '对应的内容',
             url               : '对应的url',
             cache             : true,
@@ -471,7 +525,7 @@
             // 如果当前的菜单项有子菜单项，则不可以添加后置对象
             options.rear && children.last().empty().append(options.rear).show();
             
-            options.name !== current.name && el.children('.neter-navigation-item-name').attr('title', options.name).html(options.name);
+            options.name !== current.name && el.children('.neter-navigation-item-name').attr('title', options.title || options.name.replace(/<.*$/, '')).html(options.name);
             
             children.last()[options.closeButton ? 'show' : 'hide']();
             
@@ -515,7 +569,7 @@
                 var flag = true;
                 if (typeof defaults.removeItemEvent === 'function') {
                     // 仅当删除项事件返回false时才不删除导航项
-                    flag = defaults.removeItemEvent.call(item.el, _this, item) !== false;
+                    flag = defaults.removeItemEvent.call(item.el, _this, Neter.apply({}, item, ['el', 'view'])) !== false;
                 }
                 
                 if (!flag) { return ; }

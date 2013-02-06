@@ -248,7 +248,7 @@
             
             // 创建列表
             handler.dockList = $('<div></div>')
-                .addClass('neter-dock-list' + (defaults.showType == 'h' ? '-h' : ''))
+                .addClass('neter-dock-list-fix neter-dock-list' + (defaults.showType == 'h' ? '-h' : ''))
                 .append($('<div></div>').addClass('neter-dock-list-controller'))
                 .append($('<a href="###"></a>').addClass(' neter-dock-list-scroll up').append('<b></b>'))
                 .append(handler.listView = $('<div></div>').addClass('neter-dock-list-app-list-view')
@@ -265,7 +265,7 @@
 
             // 创建二级菜单容器
             handler.childList = $('<div></div>')
-                .addClass('neter-dock-list' + (defaults.showType == 'h' ? '-h' : '') +' neter-dock-child-list')
+                .addClass('neter-dock-list-fix neter-dock-list' + (defaults.showType == 'h' ? '-h' : '') +' neter-dock-child-list')
                 .append($('<div></div>').addClass('neter-dock-list-controller'))
                 .append($('<a href="###"></a>').addClass('neter-dock-list-scroll up').append('<b></b>'))
                 .append(handler.childListView = $('<div></div>').addClass('neter-dock-list-app-list-view')
@@ -288,7 +288,7 @@
                 .appendTo(handler.dock);
             
             // 创建全屏显示，其实并不是真正的全屏显示，也是一个固定大小
-            handler.fullList = $('<div></div>').addClass('neter-dock-list neter-dock-full-list')
+            handler.fullList = $('<div></div>').addClass('neter-dock-list-fix neter-dock-list neter-dock-full-list')
                 .append($('<a href="###"></a>').addClass('neter-dock-full-list-controller'))
                 .append($('<div></div>').addClass('neter-dock-full-list-app-list-view')
                     .append($('<div></div>').addClass('neter-dock-full-list-app-list-container')
@@ -408,7 +408,8 @@
                 handler.blink.hide();
     
                 // 更新开始按钮的显示状态
-                handler.dockStartButton.removeClass('neter-dock-start-button-open-v neter-dock-start-button-open-h')
+                handler.dockStartButton.removeClass('neter-dock-start-button neter-dock-start-button-open-v neter-dock-start-button-open-h')
+                    .addClass('neter-dock-start-button-expand')
                     .addClass(defaults.showType == 'h' ? 'neter-dock-start-button-open-h' : 'neter-dock-start-button-open-v');
                 
                 method.openList();
@@ -478,9 +479,12 @@
             handler.dock
             // 应用程序单击事件
             .on('click', '.neter-dock-list-item,.neter-dock-full-list-item', function(event) {
-                var itemEvent = defaults.itemEvent;
+                var itemEvent = defaults.itemEvent,
+                    options   = method.getOptions(this, $(this).data('level') == 2 ? handler.subApps : null);
 
-                if (typeof itemEvent === 'function' && itemEvent.call(this, _this, method.getOptions(this, $(this).data('level') == 2 ? handler.subApps : null), defaults.currentModel, event) !== false) {
+                if (typeof itemEvent === 'function'
+                    && itemEvent.call(this, _this, Neter.apply({}, options, ['app4full', 'app4list']), defaults.currentModel, event) !== false) {
+                    
                     method.closeList();
                 } else {
                     method.closeList();
@@ -667,7 +671,8 @@
                 handler  = _this.handler;
             
             handler.blink[defaults.blink ? 'show' : 'hide']();
-            handler.dockStartButton.removeClass('neter-dock-start-button-open-v neter-dock-start-button-open-h');
+            handler.dockStartButton.removeClass('neter-dock-start-button-expand neter-dock-start-button-open-v neter-dock-start-button-open-h')
+                                   .addClass('neter-dock-start-button');
             handler.dockList.hide();
             handler.fullList.hide();
             handler.childList.hide();

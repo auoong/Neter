@@ -9,7 +9,6 @@
     // 插件相对于调用页面的路径
     var __path__  = '',
         __skin__  = '天空蓝',
-        __color__ = '#135BA5',
         __count__ = 0;
     
     /**
@@ -33,6 +32,12 @@
     Neter.apply = function(aim, source, defaults, mask) {
         aim      = aim || {};
         source   = source || {};
+
+        if (defaults instanceof Array) {
+            mask     = defaults;
+            defaults = {};
+        }
+        
         defaults = defaults || {};
         mask     = mask || [];
         
@@ -134,22 +139,6 @@
             return this;
         },
         /**
-         * 设置获取保存当前皮肤的基准色
-         * @static
-         * @function
-         * @name Neter.color
-         * @param {Number|String} [color='#135BA5'] 要设置的颜色，省略则获取
-         * @return {String|Neter} 若提供color参数则返回Neter引用，否则返回当前的颜色值
-         */
-        color : function(color) {
-            if (typeof color === 'undefined') {
-                return __color__;
-            } else {
-                __color__ = color;
-            }
-            return this;
-        },
-        /**
          * 计数器
          * @static
          * @function
@@ -164,6 +153,30 @@
             } else {
                 return __count__++;
             }
+        },
+        // 启用自动加载皮肤
+        autoLoadSkin : function() {
+            var skin = $('link#skin');
+                name = $.cookie('skin'),
+                file = Neter.path() + 'themes/' + $.cookie('skinFile') + '?ver=' + Math.random();
+
+            if (skin.length) {
+                if (name && skin.attr('href').indexOf('/' + $.cookie('skinFile')) === -1) {
+                    skin.attr('href', file);
+                }
+            } else {
+                name && $('<link id="skin" rel="stylesheet" type="text/css" />').appendTo($('head').get(0)).attr('href', file);
+            }
+
+            Neter.timer = setTimeout(arguments.callee, 2000);
+
+            return this;
+        },
+        // 取消自动加载皮肤
+        stopAutoLoadSkin : function() {
+            clearTimeout(Neter.timer);
+
+            return this;
         }
     });
 })(window, $);

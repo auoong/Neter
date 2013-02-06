@@ -1,0 +1,132 @@
+/*global #{*/
+    /* 公共样式 */
+    /* 主体区域 */
+    .global-body, body {
+        font-size: 12px;
+        color: #584b28;
+        background-color: #f3efe5;
+    }
+
+    /* 表格行间距 */
+    table.global-table th, table.global-table td {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        /* line-spacing: 8px; */
+    }
+
+    /* 头部区域 */
+    .global-header {
+        font-size: 12px;
+        color: #584b28;
+        background-color: #E8E2D2;
+    }
+    /* 左侧区域 */
+    .global-left-side {
+        font-size: 12px;
+        color: #584b28;
+        background-color: #E8E2D2;
+    }
+    /* 标题栏 */
+    .global-title-bar {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #584b28;
+    }
+/*}#*/
+/*neter-accordion #{*/
+    /* Neter.Accordion 插件 */
+    /* 未选中状态 */
+    .neter-accordion-item {
+        font-size: 14px;
+        color: #222;
+    }
+    /* 鼠标悬停 */
+    .neter-accordion-item-hover {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #a58c47;
+    }
+    /* 选中 */
+    .neter-accordion-item-selected {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #584b28;
+    }
+/*}#*/
+/*neter-navigation #{*/
+    /* Neter.Navigation插件 */
+    .neter-navigation-item {
+        background: #d2c399;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FEFFFF), to(#d2c399));
+        background: -moz-linear-gradient(center top, #FEFFFF, #d2c399) repeat;
+        background: -o-linear-gradient(top, #FEFFFF,#d2c399);
+        background: -ms-linear-gradient(top, #FEFFFF,#d2c399);
+        background: linear-gradient(to bottom, #FEFFFF,#d2c399);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFFFF', endColorstr='#d2c399');
+        /* background-start-color: #FEFFFF; */
+        /* background-end-color: #d2c399; */
+        border-color: #d1bf8d;
+        color: #5c5c5c;
+        font-size: 14px;
+    }
+    .neter-navigation-item-hover {
+        background: #c4ae75;
+        background: -webkit-gradient(linear, left top, left bottom, from(#e0d5b8), to(#c4ae75));
+        background: -moz-linear-gradient(center top, #e0d5b8, #c4ae75) repeat;
+        background: -o-linear-gradient(top, #e0d5b8,#c4ae75);
+        background: -ms-linear-gradient(top, #e0d5b8,#c4ae75);
+        background: linear-gradient(to bottom, #e0d5b8,#c4ae75);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e0d5b8', endColorstr='#c4ae75');
+        /* background-start-color: #e0d5b8; */
+        /* background-end-color: #c4ae75; */
+        border-color: #bba364;
+        color: #222;
+        font-size: 14px;
+    }
+    .neter-navigation-item-selected {
+        background: #584b28;
+        background: -webkit-gradient(linear, left top, left bottom, from(#584b28), to(#584b28));
+        background: -moz-linear-gradient(center top, #584b28, #584b28) repeat;
+        background: -o-linear-gradient(top, #584b28,#584b28);
+        background: -ms-linear-gradient(top, #584b28,#584b28);
+        background: linear-gradient(to bottom, #584b28,#584b28);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#584b28', endColorstr='#584b28');
+        /* background-start-color: #584b28; */
+        /* background-end-color: #584b28; */
+        border-color: #816d37;
+        color: #ebe2cd;
+        font-size: 14px;
+    }
+    .neter-navigation-separator {
+        background: #584b28;
+    }
+    .neter-navigation-item-close-button {
+        color: #b6b6b6;
+    }
+    .neter-navigation-item-close-button-hover {
+        background: #c4ae75;
+        background: -webkit-gradient(linear, left top, left bottom, from(#e0d5b8), to(#c4ae75));
+        background: -moz-linear-gradient(center top, #e0d5b8, #c4ae75) repeat;
+        background: -o-linear-gradient(top, #e0d5b8,#c4ae75);
+        background: -ms-linear-gradient(top, #e0d5b8,#c4ae75);
+        background: linear-gradient(to bottom, #e0d5b8,#c4ae75);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e0d5b8', endColorstr='#c4ae75');
+        /* background-start-color: #e0d5b8; */
+        /* background-end-color: #c4ae75; */
+        border-color: #bba364;
+        color: #222;
+    }
+/*}#*/
+/*neter-dock #{*/
+    /* Neter.Dock插件 */
+    .neter-dock-start-button {
+        background: #9b8344;
+    }
+    .neter-dock-start-button-expand {
+        background: #584b28;
+    }
+    /* 列表背景与展开后的触点背景一致 */
+    .neter-dock-list-fix {
+        background: #584b28;
+    }
+/*}#*//*413718923*/

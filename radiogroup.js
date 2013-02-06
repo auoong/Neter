@@ -58,14 +58,14 @@ options = {
     this.method = {
         /**
          * 根据名称获取配置信息
-         * @param {String} name 按钮名称
+         * @param {String} item 按钮名称
          * @return {Object} 按钮配置信息
          */
-        getOptions : function(name) {
+        getOptions : function(item) {
             var radios = _this.handler.radios;
 
-            for (var i = 0, len = radios.lenght; i < len; ++i) {
-                if (radios[i].name === name) {
+            for (var i = 0, len = radios.length; i < len; ++i) {
+                if (radios[i].name === item || radios[i].radio.get(0) === item) {
                     return radios[i];
                 }
             }
@@ -82,7 +82,7 @@ options = {
                 // 创建按钮图标
                 icon      = $('<span><b></b></span>').addClass(defaults.ICON_NORMAL_CLASS).appendTo(radio),
                 // 创建按钮标签
-                label     = $('<span></span>').addClass('neter-radio-group-radio-label').append(options.label).appendTo(radio);
+                label     = $('<span></span>').addClass('neter-radio-group-radio-label').append(options.tag).appendTo(radio);
 
             var childrens = container.find('span.neter-radio-group-radio');
 
@@ -111,14 +111,15 @@ options = {
         },
         /** @ignore */
         bindEvents : function(item, options) {
-            var defaults = _this.defaults;
+            var defaults = _this.defaults,
+                method   = this;
 
             if (!item) { return this; }
 
-            item.on('click', { options : options }, function(event) {
-                var options = event.data.options;
+            item.on('click', { name : options.name }, function(event) {
+                var options = method.getOptions(event.data.name);
 
-                if (typeof defaults.selectedEvent === 'function' && defaults.selectedEvent.call(this, _this, options, event) === false) {
+                if (typeof defaults.selectedEvent === 'function' && defaults.selectedEvent.call(this, _this, Neter.apply({}, options, ['radio', 'icon', 'label', 'selected']), event) === false) {
                     return ;
                 }
 
@@ -248,7 +249,7 @@ options = {
 
         if (!item) { return this; }
 
-        item.label !== options.label && handler.label.empty().append(options.label);
+        item.tag !== options.tag && handler.label.empty().append(options.tag);
         options.selected && this.selected(name);
         options.disabled && this.disabled(name, true);
 
@@ -335,7 +336,7 @@ options = {
 
         if (!arguments.length) {
             $.each(this.handler.radios, function(index, value) {
-                current = value.selected ? value : current;
+                current = value.selected ? Neter.apply({}, value, ['radio', 'icon', 'label']) : current;
             });
 
             return current;

@@ -328,7 +328,7 @@ button.neter-search-bar-search-button:hover {
 .neter-drop-down-menu-item-current,
 .neter-drop-down-menu-item-selected {
     background-color: #3366CC;
-    color: #FFF !important;
+    color: #FFF;
 }
 /* 菜单项前缀 */
 .neter-drop-down-menu-item-front {
@@ -394,6 +394,9 @@ button.neter-search-bar-search-button:hover {
 }
 /* 导航项 */
 .neter-navigation-item,
+.neter-navigation-item-hover,
+.neter-navigation-item-active,
+.neter-navigation-item-selected,
 .neter-navigation-item-options-menu-button {
     position: relative;
     display: block;
@@ -418,15 +421,12 @@ button.neter-search-bar-search-button:hover {
     white-space: nowrap;
     z-index: 3;
 }
-.neter-navigation-item:hover,
-.neter-navigation-item-options-menu-button:hover,
+
 .neter-navigation-item-hover {
     background-position: 0 -160px;
     background: -moz-linear-gradient(center top, #FEFFFF, #C8DCF1) repeat;
     border-color: #A1ACB8;
 }
-.neter-navigation-item:active,
-.neter-navigation-item-options-menu-button:active,
 .neter-navigation-item-active {
     background-position: 0 -208px;
     background: #A0B0C1;
@@ -434,11 +434,11 @@ button.neter-search-bar-search-button:hover {
     color: #6A6A6A;
 }
 .neter-navigation-item-selected {
-    background-position: 0 -272px !important;
-    background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat 0 0 !important;
+    background-position: 0 -272px;
+    background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat 0 0;
     border-color: #135AA4;
     font-weight: bold;
-    color: #FFF !important;
+    color: #FFF;
 }
 /* 下拉选项按钮 */
 .neter-navigation-item-options-menu-button {
@@ -450,6 +450,7 @@ button.neter-search-bar-search-button:hover {
     padding: 0;
     width: 27px;
 }
+
 .neter-navigation-item-options-menu-button b {
     position: absolute;
     left: 10px;
@@ -464,46 +465,52 @@ button.neter-search-bar-search-button:hover {
     height: 19px;
     position: absolute;
     right: 1px;
-    top: 11px;
+    top: 9px;
     width: 19px;
     cursor: pointer;
     display: none;
 }
-.neter-navigation-item-close-button:hover {
-    border-radius: 2px;
-    border: 1px #A1ACB8 solid !important;
-    color: #4E5257;
+.neter-navigation-item-close-button {
+    background: none;
+    border-color: transparent;
 }
 /* 选中项的关闭按钮样式 */
-.neter-navigation-item-selected .neter-navigation-item-close-button:hover {
-    background: -moz-linear-gradient(center top, #AAC7E6, #77A7D9) repeat 0 0 !important;
+.neter-navigation-item-close-button-hover {
     color: #4E5257;
 }
 /* 关闭按钮背景 */
-.neter-navigation-item-close-button {
+.neter-navigation-item-close-button,
+.neter-navigation-item-close-button-hover,
+.neter-navigation-item-selected-close-button {
     display: block;
     color: #CCC;
     font-size: 12px;
-    height: 7px;
+    height: 9px;
     outline: 0 none;
     padding: 3px;
     position: absolute;
-    width: 7px;
+    width: 9px;
 }
-.neter-navigation-item-close-button b {
+.neter-navigation-item-close-button b,
+.neter-navigation-item-close-button-hover b,
+.neter-navigation-item-selected-close-button b {
     position: absolute;
-    left: 3px;
-    top: -1px;
+    left: 4px;
+    top: 0px;
     height: 16px;
     line-height: 12px;
     overflow: hidden;
     font-family: "neter" !important;
     cursor: pointer;
 }
-
-.neter-navigation-item-close-button:hover b {
-    left: 2px;
-    top: -2px;
+.neter-navigation-item-close-button-hover {
+    border-radius: 2px;
+    border: 1px #A1ACB8 solid;
+    color: #4E5257;
+}
+.neter-navigation-item-close-button-hover b {
+    left: 3px;
+    top: -1px;
 }
 
 /* 导航分隔线 */
@@ -528,7 +535,9 @@ button.neter-search-bar-search-button:hover {
 
 /* 菜单项容器 */
 .neter-accordion-item-container,
-.neter-accordion-item {
+.neter-accordion-item,
+.neter-accordion-item-hover,
+.neter-accordion-item-selected {
     margin-right: 1px;
     height: 32px;
     line-height: 32px;
@@ -536,20 +545,23 @@ button.neter-search-bar-search-button:hover {
     overflow: hidden;
 }
 /* 子菜单项的容器 */
-.neter-accordion-item-container .neter-accordion-item-container .neter-accordion-item {
+.neter-accordion-item-container .neter-accordion-item-container .neter-accordion-item-flag {
     padding-left: 40px;
 }
 /* 菜单项 */
-.neter-accordion-item {
+.neter-accordion-item,
+.neter-accordion-item-hover,
+.neter-accordion-item-selected {
     padding-left: 26px;
     cursor: pointer;
     font-size: 12px;
 }
-.neter-accordion-item:hover,
+.neter-accordion-item-hover {
+    background: #72abe6;
+}
+
 .neter-accordion-item-selected {
     background: #E6E6E6;
-}
-.neter-accordion-item-selected {
     font-weight: bold;
 }
 /* 菜单项分隔线 */
@@ -585,7 +597,7 @@ button.neter-search-bar-search-button:hover {
 /* 菜单项名称 */
 .neter-accordion-item-name {
     text-overflow: ellipsis;
-    text-shadow: 0 1px 0 #FFF;
+    
 }
 /* 菜单组 */
 .neter-accordion-item-group {
@@ -653,7 +665,8 @@ button.neter-search-bar-search-button:hover {
     cursor: pointer;
 }
 /* 开始按钮 */
-.neter-dock-start-button {
+.neter-dock-start-button,
+.neter-dock-start-button-expand {
     background: url(../images/global.png) no-repeat 0px 0px\9;
     background: rgba(54, 54, 54, .7);
     border-radius: 32px;
@@ -666,7 +679,8 @@ button.neter-search-bar-search-button:hover {
     z-index: 20;
     cursor: pointer;
 }
-.neter-dock-start-button:hover {
+.neter-dock-start-button:hover,
+.neter-dock-start-button-expand:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, .5);
 }
 /* 显示模式为纵向时的开始按钮触发 */
@@ -699,7 +713,11 @@ button.neter-search-bar-search-button:hover {
 .neter-dock-start-button .lt,
 .neter-dock-start-button .rt,
 .neter-dock-start-button .lb,
-.neter-dock-start-button .rb {
+.neter-dock-start-button .rb,
+.neter-dock-start-button-expand .lt,
+.neter-dock-start-button-expand .rt,
+.neter-dock-start-button-expand .lb,
+.neter-dock-start-button-expand .rb {
     position: absolute;
     background: #CCC;
     border: 1px solid #CCC;
@@ -711,14 +729,17 @@ button.neter-search-bar-search-button:hover {
     width: 4px;
     cursor: pointer;
 }
-.neter-dock-start-button .rt {
+.neter-dock-start-button .rt,
+.neter-dock-start-button-expand .rt {
     left: 17px;
 }
-.neter-dock-start-button .lb {
+.neter-dock-start-button .lb,
+.neter-dock-start-button-expand .lb {
     background: transparent !important;
     top: 17px;
 }
-.neter-dock-start-button .rb {
+.neter-dock-start-button .rb,
+.neter-dock-start-button-expand .rb {
     left: 17px;
     top: 17px;
 }
@@ -1222,7 +1243,7 @@ button.neter-search-bar-search-button:hover {
     text-align: center;
 }
 .neter-dock-full-list-page-toolbar a {
-    text-decoration: none;;
+    text-decoration: none;
 }
 .neter-dock-full-list-page-toolbar .up,
 .neter-dock-full-list-page-toolbar .down {
@@ -1586,7 +1607,6 @@ input[type=text].neter-combox-input {
 .neter-checkbox-group-radio-label {
     white-space: nowrap;
     cursor: default;
-    font-size: 12px;
     line-height: 14px;
 }
 
@@ -1677,4 +1697,16 @@ input[type=text].neter-combox-input {
 .neter-tool-tips-in-arrow-right b {
     width: 7px;
     left: 3px;
+}
+
+/* Neter.ColorPicker（颜色拾取器插件）*/
+.neter-color-picker {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    background: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 0 5px #000;
+    z-index: 999999;
 }

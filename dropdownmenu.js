@@ -457,7 +457,7 @@
                     return ;
                 }
                 method.unselected().selected(this);
-                typeof defaults.menuEvent === 'function' && defaults.menuEvent.call(this, _this, o, event);
+                typeof defaults.menuEvent === 'function' && defaults.menuEvent.call(this, _this, Neter.apply({}, o, ['el', 'subMenus']), event);
             });
             
             // 绑定菜单触发

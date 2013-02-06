@@ -1,0 +1,132 @@
+/*global #{*/
+    /* 公共样式 */
+    /* 主体区域 */
+    .global-body, body {
+        font-size: 12px;
+        color: #000;
+        background-color: #FFF;
+    }
+
+    /* 表格行间距 */
+    table.global-table th, table.global-table td {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        /* line-spacing: 8px; */
+    }
+
+    /* 头部区域 */
+    .global-header {
+        font-size: 12px;
+        color: #000;
+        background-color: #FFF;
+    }
+    /* 左侧区域 */
+    .global-left-side {
+        font-size: 12px;
+        color: #000;
+        background-color: #FFF;
+    }
+    /* 标题栏 */
+    .global-title-bar {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #CCC;
+    }
+/*}#*/
+/*neter-accordion #{*/
+    /* Neter.Accordion 插件 */
+    /* 未选中状态 */
+    .neter-accordion-item {
+        font-size: 14px;
+        color: #222;
+    }
+    /* 鼠标悬停 */
+    .neter-accordion-item-hover {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #72abe6;
+    }
+    /* 选中 */
+    .neter-accordion-item-selected {
+        font-size: 14px;
+        color: #FFF;
+        background-color: #135BA5;
+    }
+/*}#*/
+/*neter-navigation #{*/
+    /* Neter.Navigation插件 */
+    .neter-navigation-item {
+        background: #DAE8F6;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FEFFFF), to(#DAE8F6));
+        background: -moz-linear-gradient(center top, #FEFFFF, #DAE8F6) repeat;
+        background: -o-linear-gradient(top, #FEFFFF,#DAE8F6);
+        background: -ms-linear-gradient(top, #FEFFFF,#DAE8F6);
+        background: linear-gradient(to bottom, #FEFFFF,#DAE8F6);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFFFF', endColorstr='#DAE8F6');
+        /* background-start-color: #FEFFFF; */
+        /* background-end-color: #DAE8F6; */
+        border-color: #B9C4CF;
+        color: #6A6A6A;
+        font-size: 14px;
+    }
+    .neter-navigation-item-hover {
+        background: #C8DCF1;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FEFFFF), to(#C8DCF1));
+        background: -moz-linear-gradient(center top, #FEFFFF, #C8DCF1) repeat;
+        background: -o-linear-gradient(top, #FEFFFF,#C8DCF1);
+        background: -ms-linear-gradient(top, #FEFFFF,#C8DCF1);
+        background: linear-gradient(to bottom, #FEFFFF,#C8DCF1);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFFFF', endColorstr='#C8DCF1');
+        /* background-start-color: #FEFFFF; */
+        /* background-end-color: #C8DCF1; */
+        border-color: #A1ACB8;
+        color: #6A6A6A;
+        font-size: 14px;
+    }
+    .neter-navigation-item-selected {
+        background: #135BA5;
+        background: -webkit-gradient(linear, left top, left bottom, from(#196FC6), to(#135BA5));
+        background: -moz-linear-gradient(center top, #196FC6, #135BA5) repeat;
+        background: -o-linear-gradient(top, #196FC6,#135BA5);
+        background: -ms-linear-gradient(top, #196FC6,#135BA5);
+        background: linear-gradient(to bottom, #196FC6,#135BA5);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#196FC6', endColorstr='#135BA5');
+        /* background-start-color: #196FC6; */
+        /* background-end-color: #135BA5; */
+        border-color: #135AA4;
+        color: #FFF;
+        font-size: 14px;
+    }
+    .neter-navigation-separator {
+        background: #135BA5;
+    }
+    .neter-navigation-item-close-button {
+        color: #CCC;
+    }
+    .neter-navigation-item-close-button-hover {
+        background: #C8DCF1;
+        background: -webkit-gradient(linear, left top, left bottom, from(#FEFFFF), to(#C8DCF1));
+        background: -moz-linear-gradient(center top, #FEFFFF, #C8DCF1) repeat;
+        background: -o-linear-gradient(top, #FEFFFF,#C8DCF1);
+        background: -ms-linear-gradient(top, #FEFFFF,#C8DCF1);
+        background: linear-gradient(to bottom, #FEFFFF,#C8DCF1);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFFFF', endColorstr='#C8DCF1');
+        /* background-start-color: #FEFFFF; */
+        /* background-end-color: #C8DCF1; */
+        border-color: #A1ACB8;
+        color: #4E5257;
+    }
+/*}#*/
+/*neter-dock #{*/
+    /* Neter.Dock插件 */
+    .neter-dock-start-button {
+        background: #327aed;
+    }
+    .neter-dock-start-button-expand {
+        background: #16549c;
+    }
+    /* 列表背景与展开后的触点背景一致 */
+    .neter-dock-list-fix {
+        background: #16549c;
+    }
+/*}#*//*-462656916*/
